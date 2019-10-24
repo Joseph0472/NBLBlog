@@ -14,7 +14,7 @@
 </head>
 <body>
 <header>
-    <jsp:include page="/view/nav.jsp"/>
+    <jsp:include page="/WEB-INF/view/nav.jsp"/>
 </header>
 <h1>Your name and login status:</h1>
 <p>Hello: ${UserNameBySession}, your user id is: ${UserIdBySession}</p>

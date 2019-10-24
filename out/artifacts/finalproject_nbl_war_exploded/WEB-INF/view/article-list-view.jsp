@@ -10,7 +10,7 @@
 <body>
 <header>
     <p>articles</p>
-    <jsp:include page="/view/nav.jsp"/>
+    <jsp:include page="/WEB-INF/view/nav.jsp"/>
 </header>
 <div class="container">
 
