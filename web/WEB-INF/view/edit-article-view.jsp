@@ -6,6 +6,8 @@
 <head>
     <title>My Articles</title>
     <link rel="stylesheet" href="./css/site.css">
+    <link href="./froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./froala-editor/js/froala_editor.pkgd.min.js"></script>
 </head>
 <body>
 <header>
@@ -29,8 +31,12 @@
         <div>
             <label for="new-article-body">Content:</label><br>
             <textarea name="content" id="new-article-body"  placeholder="Your content here" rows="10"
-                      required>${article.content}</textarea>
+                      >${article.content}</textarea>
+            <script>
+                var editor = new FroalaEditor('#new-article-body');
+            </script>
         </div>
+
         <div>
             <p>the id is: ${article.id}</p>
             <button type="submit" name="id" value="${article.id}" >Submit</button>
