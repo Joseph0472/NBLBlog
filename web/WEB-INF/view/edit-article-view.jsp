@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="./css/site.css">
 </head>
 <body>
-
+<header>
+    <jsp:include page="/view/nav.jsp"/>
+</header>
 <div class="container">
 
     <h1>New Article</h1>
