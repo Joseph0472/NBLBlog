@@ -6,8 +6,8 @@
 <head>
     <title>My Articles</title>
     <link rel="stylesheet" href="./css/site.css">
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
+    <link href="./froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./froala-editor/js/froala_editor.pkgd.min.js"></script>
 </head>
 <body>
 <header>
@@ -32,8 +32,12 @@
         <div>
             <label for="new-article-body">Content:</label><br>
             <textarea name="content" id="new-article-body" placeholder="Your content here" rows="10"
-                      required></textarea>
-        </div>
+                      ></textarea></div>
+        <script>
+            var editor = new FroalaEditor('#new-article-body');
+        </script>
+
+
         <div>
             <button type="submit">Submit</button>
         </div>
