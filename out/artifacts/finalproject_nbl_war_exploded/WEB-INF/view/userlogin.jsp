@@ -30,6 +30,10 @@
 	</script>
 </head>
 <body>
+<header>
+	<p>user login</p>
+	<jsp:include page="/WEB-INF/view/nav.jsp"/>
+</header>
 	<div class="wrapper">
 		<div class="container">
 			<h1>Welcome to the blog</h1>

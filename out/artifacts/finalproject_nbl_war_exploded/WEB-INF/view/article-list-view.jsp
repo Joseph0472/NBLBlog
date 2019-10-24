@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="./css/site.css">
 </head>
 <body>
-
+<header>
+    <p>articles</p>
+    <jsp:include page="/WEB-INF/view/nav.jsp"/>
+</header>
 <div class="container">
 
     <h1>All post</h1>

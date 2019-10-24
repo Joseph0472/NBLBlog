@@ -10,7 +10,10 @@
     <script type="text/javascript" src="./froala-editor/js/froala_editor.pkgd.min.js"></script>
 </head>
 <body>
-
+<header>
+    <p>add a new article</p>
+    <jsp:include page="/WEB-INF/view/nav.jsp"/>
+</header>
 <div class="container">
 
     <h1>New Article</h1>
