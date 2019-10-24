@@ -1,7 +1,5 @@
 package ictgradschool.web.deployments.model;
 
-import ictgradschool.web.deployments.controller.UserJavaBean;
-
 import java.sql.*;
 
 /**

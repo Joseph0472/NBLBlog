@@ -1,4 +1,4 @@
-package ictgradschool.web.deployments.controller;
+package ictgradschool.web.deployments.model;
 
 import java.io.Serializable;
 

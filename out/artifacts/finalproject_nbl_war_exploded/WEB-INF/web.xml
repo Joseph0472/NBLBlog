@@ -42,10 +42,10 @@
         <servlet-name>startup</servlet-name>
         <jsp-file>/WEB-INF/view/start-page.jsp</jsp-file>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>startup</servlet-name>
-        <url-pattern></url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>startup</servlet-name>-->
+<!--        <url-pattern></url-pattern>-->
+<!--    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>startup</servlet-name>
         <url-pattern>/startpage</url-pattern>
@@ -63,5 +63,73 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/userlogin</url-pattern>
     </servlet-mapping>
-</web-app>
+
         <!--============================= Joseph part end =================================================-->
+<servlet>
+<servlet-name>Articles</servlet-name>
+<servlet-class>ictgradschool.web.deployments.controller.ArticleListServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>Articles</servlet-name>
+<url-pattern></url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+<servlet-name>Articles</servlet-name>
+<url-pattern>/articles</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>NewArticle</servlet-name>
+<servlet-class>ictgradschool.web.deployments.controller.NewArticleServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>NewArticle</servlet-name>
+<url-pattern>/newArticle</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>ArticleContent</servlet-name>
+<servlet-class>ictgradschool.web.deployments.controller.ArticleContentServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>ArticleContent</servlet-name>
+<url-pattern>/ArticleContent</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>DeleteArticle</servlet-name>
+<servlet-class>ictgradschool.web.deployments.controller.DeleteArticleServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>DeleteArticle</servlet-name>
+<url-pattern>/deleteArticle</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>EditArticle</servlet-name>
+<servlet-class>ictgradschool.web.deployments.controller.EditArticleServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>EditArticle</servlet-name>
+<url-pattern>/editArticle</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>ChangeArticle</servlet-name>
+<servlet-class>ictgradschool.web.deployments.controller.ChangeArticleServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>ChangeArticle</servlet-name>
+<url-pattern>/changeArticle</url-pattern>
+</servlet-mapping>
+
+
+        <!--============================= Lucas part end =================================================-->
+</web-app>
