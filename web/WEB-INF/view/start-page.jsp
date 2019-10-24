@@ -20,7 +20,7 @@
 <body>
 <header>
     <p>here to start</p>
-    <jsp:include page="/view/nav.jsp"/>
+    <jsp:include page="/WEB-INF/view/nav.jsp"/>
 </header>
 <h1>Welcome to the NBL blog login test page</h1>
 <br>
