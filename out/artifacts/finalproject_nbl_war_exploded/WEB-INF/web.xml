@@ -130,6 +130,16 @@
 <url-pattern>/changeArticle</url-pattern>
 </servlet-mapping>
 
+    <servlet>
+        <servlet-name>editorServlet</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.editorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>editorServlet</servlet-name>
+        <url-pattern>/editorServlet</url-pattern>
+    </servlet-mapping>
+
 
         <!--============================= Lucas part end =================================================-->
 </web-app>
