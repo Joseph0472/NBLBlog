@@ -3,6 +3,7 @@ package ictgradschool.web.deployments.controller;
 import ictgradschool.util.AuthenticatorUtils;
 import ictgradschool.util.DBConnectionUtils;
 import ictgradschool.web.deployments.model.UserDAO;
+import ictgradschool.web.deployments.model.UserJavaBean;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

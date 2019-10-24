@@ -1,6 +1,6 @@
 package ictgradschool.util;
 
-import ictgradschool.web.deployments.controller.UserJavaBean;
+import ictgradschool.web.deployments.model.UserJavaBean;
 
 public class AuthenticatorUtils {
 
