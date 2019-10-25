@@ -17,15 +17,17 @@
 
 <form id="form" method="post" action="" onsubmit="return check()">
 
-    <p>Account Name<input type="text" id="name"></p>
-    <p>Display Name<input type="text" ></p>
-    <p>Email Address<input type="email" id="email"></p>
-    <p>Phone<input type="tel" ></p>
-    <p>Date of Birth<input type="date" id="date" max= 2020-09-10></p>
-    <p>Zipcode<input tpye="text" id="zip"></p>
-    <p>Password<input type="password" id="psw" ></p>
-    <p>Password Confirmation<input type="password" id="psw_confirmation" ></p>
+    <p>First Name<input type="text" id="fname"></p>
+    <p>Last Name<input type="text" id="lname"></p>
+    <p>Email Address<input type="text" id="email"></p>
+    <p>Phone<input type="text" ></p>
+    <p>Date of Birth<input type="date" id="date" max= 2029-10-10></p>
+    <%--TODO: copy the dropdown list from the former project, and make the desc done, and avatar--%>
+    <p>Country<input><p>
+    <p>Description<input><p>
+
     <p>Choose a avatar or update your own one</p>
+
     <p><time hidden name="timestamp" value="gettimestamp()">time</time></p>
     <button type="submit" >submit</button>
     <button type="reset" value="reset">clear</button>
@@ -161,7 +163,6 @@
 
 
     }
-
 </script>
 </body>
 </html>

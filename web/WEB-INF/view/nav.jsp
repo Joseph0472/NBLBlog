@@ -12,6 +12,6 @@
 
 
 <a href="/userlogin"> Login </a>      |
-<a href="/updateuserinfo"> UserInfo</a>      |
+<a href="/WEB-INF/view/update-accountInfo.jsp"> UserInfo</a>      |
 <a href="/articles"> Articles </a>      |
 <a href="/ArticleContent"> Content </a>
