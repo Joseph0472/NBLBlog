@@ -73,11 +73,17 @@ public class UserDAO {
     }
 
     public static boolean addUserInfo(UserInfoJavaBean user, Connection conn) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO fp_userLogin (username, passHashBase64, saltBase64, numIterations) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPassHashBase64());
-            stmt.setString(3, user.getSaltBase64());
-            stmt.setInt(4, user.getNumIterations());
+        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO fp_userInfo (fname, lname, emailAddress, phoneNum, dob, country, description, avatarFilename, userid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setString(1, user.getFname());
+            stmt.setString(2, user.getLname());
+            stmt.setString(3, user.getEmailAddress());
+            stmt.setString(4, user.getPhoneNum());
+            stmt.setString(5, user.getDob());
+            stmt.setString(6, user.getCountry());
+            stmt.setString(7, user.getDescription());
+            stmt.setString(8, user.getAvatarFileName());
+            stmt.setInt(9, user.getUserid());
+
             int success = stmt.executeUpdate();
 
             if (success == 0) {
@@ -86,7 +92,7 @@ public class UserDAO {
 
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 rs.next();
-                user.setId(rs.getInt(1));
+                user.setUserid(rs.getInt(1));
                 return true;
             }
         }

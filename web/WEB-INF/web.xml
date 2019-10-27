@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-
     <servlet>
         <servlet-name>signUpServlet</servlet-name>
         <servlet-class>ictgradschool.web.deployments.controller.CreateUserServlet</servlet-class>
@@ -42,17 +41,14 @@
         <servlet-name>startup</servlet-name>
         <jsp-file>/WEB-INF/view/start-page.jsp</jsp-file>
     </servlet>
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>startup</servlet-name>-->
-<!--        <url-pattern></url-pattern>-->
-<!--    </servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>startup</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>startup</servlet-name>
         <url-pattern>/startpage</url-pattern>
     </servlet-mapping>
-
-
-
 
     <servlet>
         <servlet-name>login</servlet-name>
@@ -64,16 +60,27 @@
         <url-pattern>/userlogin</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>UpdateUserInfoServlet</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.UpdateAccountInfo</servlet-class>
+<!--        <jsp-file>/WEB-INF/view/update-account.jsp</jsp-file>-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateUserInfoServlet</servlet-name>
+        <url-pattern>/updateinfo</url-pattern>
+    </servlet-mapping>
         <!--============================= Joseph part end =================================================-->
 <servlet>
 <servlet-name>Articles</servlet-name>
 <servlet-class>ictgradschool.web.deployments.controller.ArticleListServlet</servlet-class>
 </servlet>
 
-<servlet-mapping>
-<servlet-name>Articles</servlet-name>
-<url-pattern></url-pattern>
-</servlet-mapping>
+<!--<servlet-mapping>-->
+<!--<servlet-name>Articles</servlet-name>-->
+<!--<url-pattern></url-pattern>-->
+<!--</servlet-mapping>-->
 
 <servlet-mapping>
 <servlet-name>Articles</servlet-name>
@@ -132,7 +139,7 @@
 
     <servlet>
         <servlet-name>editorServlet</servlet-name>
-        <servlet-class>ictgradschool.web.deployments.controller.editorServlet</servlet-class>
+        <servlet-class>ictgradschool.web.deployments.controller.EditorServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

@@ -15,18 +15,19 @@
 <p>(get username from session. If the user has no account info, it should say/display: you need to create your
     account info at very first time. If the user has account info, just update it.)</p>
 
-<form id="form" method="post" action="" onsubmit="return check()">
+<form id="form" method="post" action="/login-result" onsubmit="return check()">
 
     <p>First Name<input type="text" id="fname"></p>
     <p>Last Name<input type="text" id="lname"></p>
     <p>Email Address<input type="text" id="email"></p>
-    <p>Phone<input type="text" ></p>
+    <p>Phone<input type="text" id="phonenum"></p>
     <p>Date of Birth<input type="date" id="date" max= 2029-10-10></p>
+<%--    date here should be handled as String--%>
     <%--TODO: copy the dropdown list from the former project, and make the desc done, and avatar--%>
-    <p>Country<input><p>
-    <p>Description<input><p>
+    <p>Country<input id="country"><p>
+    <p>Description<input id="description"><p>
 
-    <p>Choose a avatar or update your own one</p>
+    <p>Choose a avatar or update your own one<input id="avatar"></p>
 
     <p><time hidden name="timestamp" value="gettimestamp()">time</time></p>
     <button type="submit" >submit</button>

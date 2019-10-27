@@ -29,4 +29,5 @@ create table fp_userInfo(
     FOREIGN KEY (userid) REFERENCES fp_userLogin(id)
 );
 
+insert into fp_userInfo(dob) value ("1993/11/23");
 -- insert into fp_userInfo(userid) VALUE (2);

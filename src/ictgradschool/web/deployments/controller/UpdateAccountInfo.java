@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,16 +20,24 @@ public class UpdateAccountInfo extends HttpServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        UserInfoJavaBean newAccountInfo = null;
+        UserInfoJavaBean newAccountInfo = new UserInfoJavaBean("","","","","","","","",1);
 
-        String usernameServlet = request.getParameter("username");
-
-        String passwordServlet = request.getParameter("password");
+        String Userid = "1";
+        newAccountInfo.setFname(request.getParameter("fname"));
+        newAccountInfo.setLname(request.getParameter("fname"));
+        newAccountInfo.setEmailAddress(request.getParameter("email"));
+        newAccountInfo.setPhoneNum(request.getParameter("phonenum"));
+        newAccountInfo.setDob(request.getParameter("date"));
+        newAccountInfo.setCountry(request.getParameter("country"));
+        newAccountInfo.setDescription(request.getParameter("description"));
+        newAccountInfo.setAvatarFileName(request.getParameter("avatar"));
 
         try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
-
-            newAccount = AuthenticatorUtils.createAccount(usernameServlet, passwordServlet);
-            UserDAO.addUser(newAccount,conn);
+            if (request.getAttribute("UserIdBySession") != null) {
+                Userid = request.getAttribute("UserIdBySession").toString();
+                newAccountInfo.setUserid(Integer.parseInt(Userid));
+            }
+            UserDAO.addUserInfo(newAccountInfo,conn);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,8 +46,8 @@ public class UpdateAccountInfo extends HttpServlet{
         /**
          * In this case, I have no need to show the result of sign-in, maybe it is not necessary to 'dispatch'... jump!
          * **/
-        //request.setAttribute("newAccount", newAccount);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/userlogin.jsp");
+        request.setAttribute("newAccountInfo", newAccountInfo);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/login-result.jsp");
         dispatcher.forward(request, response);
 
     }
