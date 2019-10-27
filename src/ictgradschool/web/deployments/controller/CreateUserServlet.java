@@ -19,7 +19,7 @@ public class CreateUserServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        UserJavaBean newAccount = null;
+        UserJavaBean newAccount;
 
         String usernameServlet = request.getParameter("username");
 

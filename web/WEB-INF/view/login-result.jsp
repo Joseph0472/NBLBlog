@@ -18,6 +18,8 @@
 </header>
 <h1>Your name and login status:</h1>
 <p>Hello: ${UserNameBySession}, your user id is: ${UserIdBySession}</p>
+<p>Your true name is: ${newAccountInfo.fname}   ${newAccountInfo.lname}</p>
 </p>
+
 </body>
 </html>

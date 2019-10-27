@@ -8,13 +8,13 @@ public class UserInfoJavaBean implements Serializable {
     private String lname;
     private String emailAddress;
     private String phoneNum;
-    private Date dob;
+    private String dob;
     private String country;
     private String description;
     private String avatarFileName;
-    private Integer userid;
+    private int userid;
 
-    UserInfoJavaBean(String fname, String lname, String emailAddress, String phoneNum, Date dob, String country, String description, String avatarFileName, Integer userid) {
+    public UserInfoJavaBean(String fname, String lname, String emailAddress, String phoneNum, String dob, String country, String description, String avatarFileName, Integer userid) {
         this.fname = fname;
         this.lname = lname;
         this.emailAddress = emailAddress;
@@ -58,11 +58,11 @@ public class UserInfoJavaBean implements Serializable {
         this.phoneNum = phoneNum;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 

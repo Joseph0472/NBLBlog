@@ -3,9 +3,7 @@ package ictgradschool.web.deployments.model;
 import java.io.Serializable;
 
 public class UserJavaBean implements Serializable {
-
     // THIS IS A JAVABEAN NOW
-
     private Integer id;
     private String username;
     private String password;
