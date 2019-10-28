@@ -50,6 +50,8 @@ public class AuthenticatorServlet extends HttpServlet {
         request.setAttribute("User", UserLoginPassed);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/login-result.jsp");
+//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login-result");
+
         dispatcher.forward(request, response);
 
     }

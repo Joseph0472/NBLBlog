@@ -92,7 +92,8 @@ public class UserDAO {
 
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 rs.next();
-                user.setUserid(rs.getInt(1));
+                System.out.println(rs);
+//                user.setUserid(rs.getInt(9));
                 return true;
             }
         }

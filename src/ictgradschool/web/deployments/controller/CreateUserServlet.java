@@ -38,7 +38,7 @@ public class CreateUserServlet extends HttpServlet {
          * In this case, I have no need to show the result of sign-in, maybe it is not necessary to 'dispatch'... jump!
          * **/
         //request.setAttribute("newAccount", newAccount);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/userlogin.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/user-login.jsp");
         dispatcher.forward(request, response);
 
     }

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class UpdateAccountInfo extends HttpServlet{
+public class UpdateAccountInfoServlet extends HttpServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -24,7 +24,7 @@ public class UpdateAccountInfo extends HttpServlet{
 
         String Userid = "1";
         newAccountInfo.setFname(request.getParameter("fname"));
-        newAccountInfo.setLname(request.getParameter("fname"));
+        newAccountInfo.setLname(request.getParameter("lname"));
         newAccountInfo.setEmailAddress(request.getParameter("email"));
         newAccountInfo.setPhoneNum(request.getParameter("phonenum"));
         newAccountInfo.setDob(request.getParameter("date"));
@@ -47,7 +47,7 @@ public class UpdateAccountInfo extends HttpServlet{
          * In this case, I have no need to show the result of sign-in, maybe it is not necessary to 'dispatch'... jump!
          * **/
         request.setAttribute("newAccountInfo", newAccountInfo);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/login-result.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/user-interface.jsp");
         dispatcher.forward(request, response);
 
     }
