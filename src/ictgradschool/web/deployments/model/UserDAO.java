@@ -73,7 +73,7 @@ public class UserDAO {
     }
 
     public static boolean addUserInfo(UserInfoJavaBean user, Connection conn) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO fp_userInfo (fname, lname, emailAddress, phoneNum, dob, country, description, avatarFilename, userid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO fp_userInfo (fname, lname, emailAddress, phoneNum, dob, country, description, avatarFilename, userid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
             stmt.setString(1, user.getFname());
             stmt.setString(2, user.getLname());
             stmt.setString(3, user.getEmailAddress());
@@ -89,13 +89,15 @@ public class UserDAO {
             if (success == 0) {
                 return false;
             }
-
-            try (ResultSet rs = stmt.getGeneratedKeys()) {
-                rs.next();
-                System.out.println(rs);
-//                user.setUserid(rs.getInt(9));
+//
+//            try (ResultSet rs = stmt.getGeneratedKeys()) {
+//                rs.next();
+//                System.out.println(rs);
+////                user.setUserid(rs.getInt(9));
+//                stmt.setInt(9, user.getUserid());
+//
                 return true;
-            }
+//            }
         }
     }
 }

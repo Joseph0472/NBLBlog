@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class UserInfoJavaBean implements Serializable {
-    private String fname;
-    private String lname;
-    private String emailAddress;
-    private String phoneNum;
-    private String dob;
-    private String country;
-    private String description;
-    private String avatarFileName;
-    private int userid;
+    private String fname = null;
+    private String lname= null;
+    private String emailAddress= null;
+    private String phoneNum= null;
+    private String dob= null;
+    private String country= null;
+    private String description= null;
+    private String avatarFileName= null;
+    private int userid = 0;
 
     public UserInfoJavaBean(String fname, String lname, String emailAddress, String phoneNum, String dob, String country, String description, String avatarFileName, Integer userid) {
         this.fname = fname;
@@ -24,6 +24,9 @@ public class UserInfoJavaBean implements Serializable {
         this.description = description;
         this.avatarFileName = avatarFileName;
         this.userid = userid;
+    }
+
+    public UserInfoJavaBean() {
     }
 
     public String getFname() {

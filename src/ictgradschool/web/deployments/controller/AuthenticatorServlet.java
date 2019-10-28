@@ -39,6 +39,7 @@ public class AuthenticatorServlet extends HttpServlet {
 //              session.setAttribute("username" , usernameServlet);
                 request.getSession().setAttribute("UserNameBySession", usernameServlet);
                 request.getSession().setAttribute("UserIdBySession", UserDAO.getUserIdByUserName(usernameServlet,conn));
+
             } else {
                 System.out.println("Fail.");
             }
@@ -46,12 +47,10 @@ public class AuthenticatorServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-
         request.setAttribute("User", UserLoginPassed);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/login-result.jsp");
 //        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login-result");
-
         dispatcher.forward(request, response);
 
     }

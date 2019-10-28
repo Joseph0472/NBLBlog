@@ -15,5 +15,7 @@
 <a href="/updateInfo"> UserInfo</a>      |
 <a href="/articles"> Articles </a>      |
 <a href="/ArticleContent"> Content </a>      |
+<p> hello <p> username: ${UserNameBySession} id: ${UserIdBySession}</p>      |
+<a href="/log-off"> log off </a>
 
-<p> hello
+<%--TODO:use js to show a username or nothing basic on the session content--%>

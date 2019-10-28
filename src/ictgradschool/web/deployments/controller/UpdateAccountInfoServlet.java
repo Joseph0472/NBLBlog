@@ -20,9 +20,11 @@ public class UpdateAccountInfoServlet extends HttpServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        UserInfoJavaBean newAccountInfo = new UserInfoJavaBean("","","","","","","","",1);
+        System.out.println("handle the post req");
+        UserInfoJavaBean newAccountInfo = new UserInfoJavaBean();
 
-        String Userid = "1";
+        Integer Userid = (Integer) request.getSession().getAttribute("UserIdBySession");
+
         newAccountInfo.setFname(request.getParameter("fname"));
         newAccountInfo.setLname(request.getParameter("lname"));
         newAccountInfo.setEmailAddress(request.getParameter("email"));
@@ -32,13 +34,18 @@ public class UpdateAccountInfoServlet extends HttpServlet{
         newAccountInfo.setDescription(request.getParameter("description"));
         newAccountInfo.setAvatarFileName(request.getParameter("avatar"));
 
-        try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
-            if (request.getAttribute("UserIdBySession") != null) {
-                Userid = request.getAttribute("UserIdBySession").toString();
-                newAccountInfo.setUserid(Integer.parseInt(Userid));
-            }
-            UserDAO.addUserInfo(newAccountInfo,conn);
+//        HttpSession session = request.getSession(false);
+//        Userid = (String)session.getAttribute("UserIdBySession");
 
+        try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
+            if (request.getSession().getAttribute("UserIdBySession") != null) {
+                System.out.println(Userid);
+                newAccountInfo.setUserid(Userid);
+                System.out.println(newAccountInfo.getFname());
+                System.out.println(request.getParameter("fname"));
+//                UserDAO.addUserInfo(newAccountInfo,conn);
+                UserDAO.addUserInfo(newAccountInfo,conn);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
