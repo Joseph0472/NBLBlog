@@ -15,7 +15,7 @@
 <p>(get username from session. If the user has no account info, it should say/display: you need to create your
     account info at very first time. If the user has account info, just update it.)</p>
 
-<form id="form" method="post" action="/login-result" onsubmit="return check()">
+<form id="form" method="post" action="/userInterface" onsubmit="return check()">
 
     <p>First Name<input type="text" id="fname"></p>
     <p>Last Name<input type="text" id="lname"></p>
@@ -46,9 +46,9 @@
         let result1= emailOK(email);
         console.log(result1);
 
-        let zip = document.querySelector("#zip").value;
-        let result2 =  zipOK(zip);
-        console.log(result2);
+        // let zip = document.querySelector("#zip").value;
+        // let result2 =  zipOK(zip);
+        // console.log(result2);
 
         let psw = document.querySelector("#psw").value;
         let psw_confirmation=document.querySelector("#psw_confirmation").value;
@@ -59,7 +59,7 @@
         let result4 =  ageOK(startdate);
         console.log(result4);
 
-        return result&&result1&&result2&&result3&&result4;
+        return result&&result1&&result3&&result4;
         // gettimestamp();
     }
     // function gettimestamp() {
@@ -149,20 +149,15 @@
                     console.log(start[2]);
                     console.log("test");
                     return false;
-
                 }
                 else return true;
-
             }
             else return true;
-
         }
         else {
             console.log("test");
             return true;
         }
-
-
     }
 </script>
 </body>

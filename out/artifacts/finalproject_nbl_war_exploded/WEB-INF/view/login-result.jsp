@@ -18,6 +18,10 @@
 </header>
 <h1>Your name and login status:</h1>
 <p>Hello: ${UserNameBySession}, your user id is: ${UserIdBySession}</p>
+<%--<p>Your true name is: ${newAccountInfo.fname}   ${newAccountInfo.lname}</p>--%>
 </p>
+<%--<% response.sendRedirect("WEB-INF/view/login-result.jsp"); %>--%>
+<meta http-equiv="refresh" content="1;url=/updateInfo">
+
 </body>
 </html>

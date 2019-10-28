@@ -11,7 +11,7 @@
 <br>
 
 <a href="/startpage"> Start </a>      |
-<a href="/userlogin"> Login </a>      |
+<a href="/user-login"> Login </a>      |
 <a href="/updateInfo"> UserInfo</a>      |
 <a href="/articles"> Articles </a>      |
 <a href="/ArticleContent"> Content </a>      |

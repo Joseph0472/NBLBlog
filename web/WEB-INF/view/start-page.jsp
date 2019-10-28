@@ -9,10 +9,10 @@
     <script>
 
         function jumptoSignUpPage() {
-            window.location.href="/usersignup";
+            window.location.href="/user-signup";
         }
         function jumptoLogInPage() {
-            window.location.href="/userlogin";
+            window.location.href="/user-login";
         }
     </script>
 </head>
@@ -26,6 +26,6 @@
 <br>
 <button type="button" value="sign-up" onclick="jumptoSignUpPage()">I'm a new user - SIGN UP</button>
 <button type="button" value="log-in" onclick="jumptoLogInPage()">I have my account - LOG IN</button>
-<a href="/updateinfo"><button> ** Update your info here ** </button></a>
+<a href="/updateInfo"><button> ** Update your info here ** </button></a>
 </body>
 </html>
