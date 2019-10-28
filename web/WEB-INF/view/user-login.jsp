@@ -31,7 +31,6 @@
 </head>
 <body>
 <header>
-	<p>user login</p>
 	<jsp:include page="/WEB-INF/view/nav.jsp"/>
 </header>
 	<div class="wrapper">
