@@ -16,8 +16,8 @@
     account info at very first time. If the user has account info, just update it.)</p>
 
 <form id="form" method="post" action="/userInterface">
-    <p>First Name<input type="text" id="fname"></p>
-    <p>Last Name<input type="text" id="lname"></p>
+    <p>First Name<input type="text" id="fname" name="fname"></p>
+    <p>Last Name<input type="text" id="lname" name="fname"></p>
     <p>Email Address<input type="text" id="email"></p>
     <p>Phone<input type="text" id="phonenum"></p>
     <p>Date of Birth<input type="date" id="date" max= 2029-10-10></p> <%--date here should be handled as String--%>

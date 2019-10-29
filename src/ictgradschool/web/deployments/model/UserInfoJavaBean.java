@@ -26,7 +26,11 @@ public class UserInfoJavaBean implements Serializable {
         this.userid = userid;
     }
 
+    public UserInfoJavaBean(String fname) {
+        this.fname = fname;
+    }
     public UserInfoJavaBean() {
+
     }
 
     public String getFname() {

@@ -34,6 +34,7 @@ public class UpdateAccountInfoServlet extends HttpServlet{
         newAccountInfo.setDescription(request.getParameter("description"));
         newAccountInfo.setAvatarFileName(request.getParameter("avatar"));
 
+
 //        HttpSession session = request.getSession(false);
 //        Userid = (String)session.getAttribute("UserIdBySession");
 
@@ -44,6 +45,7 @@ public class UpdateAccountInfoServlet extends HttpServlet{
                 System.out.println(newAccountInfo.getFname());
                 System.out.println(request.getParameter("fname"));
 //                UserDAO.addUserInfo(newAccountInfo,conn);
+
                 UserDAO.addUserInfo(newAccountInfo,conn);
             }
         } catch (SQLException e) {
