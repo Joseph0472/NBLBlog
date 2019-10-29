@@ -13,5 +13,5 @@
 
 <a href="/userlogin"> Login </a>      |
 <a href="/updateuserinfo"> UserInfo</a>      |
-<a href="/articles"> Articles </a>      |
-<a href="/ArticleContent"> Content </a>
+<a href="/articlesByUsers"> ArticlesByUsers </a>      |
+<a href="/articles"> allArticles </a>

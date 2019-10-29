@@ -14,6 +14,7 @@
 <div class="container">
 
     <h1>${article.title}</h1>
+    <h1>${article.userId}</h1>
     <hr>
 
     <div class="grid">
@@ -28,7 +29,11 @@
 
 <%--        <c:forEach items="${articles}" var="article">--%>
             <div class="card">
-               <img class="card-header card-img" src="./assets/images/${article.imageFilename}">
+                ${article.imageFilename}
+                    <c:if test = "${article.imageFilename != null}">
+                        <img class="card-header card-img" src="./assets/images/${article.imageFilename}">
+                    </c:if>
+
                 <div class="card-body">
                     <h1 class="card-title">${article.title}</h1>
                    <p>${article.content}</p>

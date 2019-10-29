@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -55,7 +57,8 @@ public class NewArticleServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        Integer userId = (Integer) req.getSession().getAttribute("UserIdBySession");
+        if (userId != null){
         // Set up file upload mechanism
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(tempFolder);
@@ -63,6 +66,9 @@ public class NewArticleServlet extends HttpServlet {
 
         // Somewhere to put the information
         Article newArticle = new Article();
+
+        System.out.println(userId);
+        newArticle.setUserId(userId);
 
         try {
 
@@ -90,7 +96,13 @@ public class NewArticleServlet extends HttpServlet {
                         fi.write(imageFile);
                         break;}else {
                             newArticle.setImageFilename(null);
+                            break;
                         }
+
+                    case "time":
+                        String date = fi.getString();
+                        newArticle.setDate(java.sql.Date.valueOf(date));
+                        break;
 
                 }
             }
@@ -103,8 +115,10 @@ public class NewArticleServlet extends HttpServlet {
 
         } catch (Exception e) {
             throw new ServletException(e);
+        }}
+        if (userId == null){
+            req.getRequestDispatcher("WEB-INF/view/userlogin.jsp").forward(req, resp);
         }
-
         // Redirect to the main articles page.
         resp.sendRedirect("./articles");
     }

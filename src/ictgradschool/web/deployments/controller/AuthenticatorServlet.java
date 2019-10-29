@@ -39,6 +39,7 @@ public class AuthenticatorServlet extends HttpServlet {
 //              session.setAttribute("username" , usernameServlet);
                 request.getSession().setAttribute("UserNameBySession", usernameServlet);
                 request.getSession().setAttribute("UserIdBySession", UserDAO.getUserIdByUserName(usernameServlet,conn));
+
             } else {
                 System.out.println("Fail.");
             }
