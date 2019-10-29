@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="pjia958@db.sporadic.nz" uuid="83728571-c25a-4920-b4e6-71bf7aa84a05">
+    <data-source name="pjia958@db.sporadic.nz" uuid="9e506b61-2949-4fd4-abc4-1ff348832522">
       <database-info product="MariaDB" version="10.1.41-MariaDB-0ubuntu0.18.04.1" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.4.1" dbms="MARIADB" exact-version="10.1.41" exact-driver-version="2.4">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>

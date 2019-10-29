@@ -26,6 +26,8 @@ public class AuthenticatorServlet extends HttpServlet {
         String passwordServlet = request.getParameter("password");
         UserLoginInfo.setPassword(request.getParameter("password"));
 
+        System.out.println(UserLoginInfo.getUsername() + " try to log");
+
         try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
 
             UserJavaBean user = UserDAO.getUserByUserName(usernameServlet, conn);
@@ -33,7 +35,6 @@ public class AuthenticatorServlet extends HttpServlet {
             if (AuthenticatorUtils.authenticate(user, passwordServlet)) {
 
                 UserLoginPassed = UserDAO.getUserByUserName(usernameServlet,conn);
-
                 //Session handling: keep the login status and you can get the session after users have logged in.
 //              HttpSession session = request.getSession();
 //              session.setAttribute("username" , usernameServlet);
