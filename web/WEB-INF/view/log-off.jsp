@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
+<p> Logging off ...</p>
+<meta http-equiv="refresh" content="1;url=/startpage">
 
 </body>
 </html>

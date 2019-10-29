@@ -84,6 +84,15 @@
         <url-pattern>/userInterface</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>logoff</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.LogOffServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logoff</servlet-name>
+        <url-pattern>/tologoff</url-pattern>
+    </servlet-mapping>
+
 
         <!--============================= Joseph part end =================================================-->
 <servlet>
