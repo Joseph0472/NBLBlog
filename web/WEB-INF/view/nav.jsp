@@ -15,8 +15,8 @@
 <a href="/updateInfo"> UserInfo</a>      |
 <a href="/articles"> Articles </a>      |
 <a href="/ArticleContent"> Content </a>      |
-<p> hello <p> username: ${UserNameBySession} id: ${UserIdBySession}</p>      |
 <a onclick="out()"> log off </a>
+<p> hello <p> username: ${UserNameBySession} id: ${UserIdBySession}</p>      |
 
 <script type="text/javascript">
     function out(){
