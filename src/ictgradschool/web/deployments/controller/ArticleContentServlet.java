@@ -3,6 +3,9 @@ package ictgradschool.web.deployments.controller;
 import ictgradschool.util.DBConnectionUtils;
 import ictgradschool.web.deployments.model.Article;
 import ictgradschool.web.deployments.model.ArticleDAO;
+import ictgradschool.web.deployments.model.Comment;
+import ictgradschool.web.deployments.model.CommentDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,11 +21,18 @@ public class ArticleContentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
-            String mid = req.getParameter("id");
+            int articleId = Integer.parseInt(req.getParameter("id"));
             HttpSession session = req.getSession();
-            session.setAttribute("articleId",mid);
-            Article article = ArticleDAO.getArticleById(Integer.parseInt(mid), conn);
+            session.setAttribute("articleId", articleId);
+            Article article = ArticleDAO.getArticleById(articleId, conn);
+            session.setAttribute("article", article);
+
             req.setAttribute("article", article);
+
+            List<Comment> comments = CommentDAO.getCommentByArticleId(articleId, conn);
+            session.setAttribute("comments", comments);
+            req.setAttribute("comments", comments);
+
             req.getRequestDispatcher("WEB-INF/view/article-content-view.jsp").forward(req, resp);
 
         } catch (SQLException e) {

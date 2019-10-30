@@ -50,8 +50,20 @@
         <%--        </c:forEach>--%>
 
     </div>
-
 </div>
+
+<jsp:include page="/WEB-INF/view/nested-comment-view.jsp"/>
+<br>
+<br>
+<br>
+<form action="./newcomment", method="get">
+    <div>
+        <label for="new-comment-body"></label>
+        <textarea name="content" id="new-comment-body" placeholder="Write your comment here" rows="10" required></textarea>
+        <br>
+        <button type="submit">Submit</button>  <button type="reset">Clear</button>
+    </div>
+</form>
 
 </body>
 </html>
