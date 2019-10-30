@@ -12,7 +12,8 @@
 
 <a href="/startpage"> Start </a>      |
 <a href="/user-login"> Login </a>      |
-<a href="/updateInfo"> UserInfo</a>      |
+<a href="/updateInfo"> UpdateUserInfo</a>      |
+<a href="/userInterface"> CheckUserInfo</a>      |
 <a href="/articles"> Articles </a>      |
 <a href="/articlesByUsers"> Personal articles </a>      |
 <a onclick="out()"> log off </a>
