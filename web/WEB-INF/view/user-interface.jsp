@@ -18,6 +18,7 @@
 </header>
 <h1> ~~ Welcome to the user interface page ~~ </h1>
 <p> Your true name is ${newAccountInfo.fname}   ${newAccountInfo.lname} </p>
+<p> Your avatar is
 <p></p>
 <p></p>
 <p></p>
