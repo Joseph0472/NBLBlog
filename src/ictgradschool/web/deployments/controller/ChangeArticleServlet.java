@@ -98,7 +98,12 @@ public class ChangeArticleServlet extends HttpServlet {
                         fi.write(imageFile);
                         break;}else {
                             newArticle.setImageFilename(newArticle.getImageFilename());
+                            break;
                         }
+                    case "time":
+                        String date = fi.getString();
+                        newArticle.setDate(java.sql.Date.valueOf(date));
+                        break;
 
                 }
             }

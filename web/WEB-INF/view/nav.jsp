@@ -10,8 +10,21 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <br>
 
-<a href="/usersignup"> Register </a>      |
-<a href="/userlogin"> Login </a>      |
-<a href="/updateuserinfo"> UserInfo</a>      |
+<a href="/startpage"> Start </a>      |
+<a href="/user-login"> Login </a>      |
+<a href="/updateInfo"> UserInfo</a>      |
 <a href="/articles"> Articles </a>      |
-<a href="/ArticleContent"> Content </a>
+<a href="/articlesByUsers"> Personal articles </a>      |
+<a onclick="out()"> log off </a>
+<p> hello: ${UserNameBySession}        your id is: ${UserIdBySession}</p>
+
+<script type="text/javascript">
+    function out(){
+        var result = confirm("Are you sure to log off？");
+        if(result){
+            location.href="/tologoff";
+        }
+    }
+</script>
+
+<%--TODO:use js to show a username or nothing basic on the session content--%>
