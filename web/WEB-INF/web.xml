@@ -132,7 +132,7 @@
 
     <servlet>
         <servlet-name>editorServlet</servlet-name>
-        <servlet-class>ictgradschool.web.deployments.controller.editorServlet</servlet-class>
+        <servlet-class>ictgradschool.web.deployments.controller.EditorServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -142,4 +142,47 @@
 
 
         <!--============================= Lucas part end =================================================-->
+
+    <servlet>
+        <servlet-name>NewComment</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.NewCommentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NewComment</servlet-name>
+        <url-pattern>/newcomment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewNestedComment</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.NewNestedCommentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NewNestedComment</servlet-name>
+        <url-pattern>/new-nested-comment</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DisplayNestedComment</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.DisplayNestedCommentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DisplayNestedComment</servlet-name>
+        <url-pattern>/display-nested-comments</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CheckUsername</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.CheckUsernameServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CheckUsername</servlet-name>
+        <url-pattern>/check-username</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

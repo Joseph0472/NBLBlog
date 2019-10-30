@@ -10,7 +10,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <br>
 
-
+<a href="/usersignup"> Register </a>      |
 <a href="/userlogin"> Login </a>      |
 <a href="/updateuserinfo"> UserInfo</a>      |
 <a href="/articles"> Articles </a>      |
