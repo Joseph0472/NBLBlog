@@ -11,6 +11,9 @@
     <title>Update Account</title>
 </head>
 <body>
+<header>
+    <jsp:include page="/WEB-INF/view/nav.jsp"/>
+</header>
 <h1>Account Info Update</h1>
 <p>(get username from session. If the user has no account info, it should say/display: you need to create your
     account info at very first time. If the user has account info, just update it.)</p>

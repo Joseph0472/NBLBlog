@@ -103,10 +103,10 @@
         <servlet-class>ictgradschool.web.deployments.controller.ArticleListServlet</servlet-class>
     </servlet>
 
-    <servlet-mapping>
-        <servlet-name>Articles</servlet-name>
-        <url-pattern></url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Articles</servlet-name>-->
+        <!--<url-pattern></url-pattern>-->
+    <!--</servlet-mapping>-->
 
     <servlet-mapping>
         <servlet-name>Articles</servlet-name>
