@@ -10,7 +10,6 @@
 </head>
 <body>
 <header>
-    <p>articles</p>
     <jsp:include page="/WEB-INF/view/nav.jsp"/>
 </header>
 <%--<c:if test = "${UserIdBySession >0}">--%>

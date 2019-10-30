@@ -30,7 +30,7 @@ public class ArticleListServletbyUser extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/view/articlesByUser-list-view.jsp").forward(req, resp);
         }
         if (userId == null){
-            req.getRequestDispatcher("WEB-INF/view/userlogin.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/view/user-login.jsp").forward(req, resp);
         }
     }
 }

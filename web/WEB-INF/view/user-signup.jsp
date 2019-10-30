@@ -15,7 +15,6 @@
 </head>
 <body>
 <header>
-    <p>user sign up</p>
 <jsp:include page="/WEB-INF/view/nav.jsp"/>
 </header>
 <h1>Please Sign-Up your account: </h1>

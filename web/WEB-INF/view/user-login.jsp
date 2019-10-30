@@ -7,6 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>User Login</title>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js?render=6Lcqnr8UAAAAAJEM7cFLvmTAQHUHorvyMVLVRw0L"></script>
 	<script>
 		grecaptcha.ready(() => {
 			console.log('1. grecaptcha.ready');

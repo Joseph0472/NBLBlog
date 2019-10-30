@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="wysiwyg-editor-java-sdk">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/wysiwyg-editor-java-sdk.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/wysiwyg-editor-java-sdk.jar!/doc" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

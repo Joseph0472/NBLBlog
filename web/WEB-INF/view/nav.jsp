@@ -14,9 +14,9 @@
 <a href="/user-login"> Login </a>      |
 <a href="/updateInfo"> UserInfo</a>      |
 <a href="/articles"> Articles </a>      |
-<a href="/ArticleContent"> Content </a>      |
+<a href="/articlesByUsers"> Personal articles </a>      |
 <a onclick="out()"> log off </a>
-<p> hello <p> username: ${UserNameBySession} id: ${UserIdBySession}</p>      |
+<p> hello: ${UserNameBySession}        your id is: ${UserIdBySession}</p>
 
 <script type="text/javascript">
     function out(){
