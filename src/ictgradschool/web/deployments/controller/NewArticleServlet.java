@@ -59,63 +59,63 @@ public class NewArticleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer userId = (Integer) req.getSession().getAttribute("UserIdBySession");
         if (userId != null){
-        // Set up file upload mechanism
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        factory.setRepository(tempFolder);
-        ServletFileUpload upload = new ServletFileUpload(factory);
+            // Set up file upload mechanism
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+            factory.setRepository(tempFolder);
+            ServletFileUpload upload = new ServletFileUpload(factory);
 
-        // Somewhere to put the information
-        Article newArticle = new Article();
+            // Somewhere to put the information
+            Article newArticle = new Article();
 
-        System.out.println(userId);
-        newArticle.setUserId(userId);
+            System.out.println(userId);
+            newArticle.setUserId(userId);
 
-        try {
+            try {
 
-            // Parse the form (works differently since we're expecting a file, amongst other form fields).
-            List<FileItem> fileItems = upload.parseRequest(req);
-            for (FileItem fi : fileItems) {
+                // Parse the form (works differently since we're expecting a file, amongst other form fields).
+                List<FileItem> fileItems = upload.parseRequest(req);
+                for (FileItem fi : fileItems) {
 
-                switch (fi.getFieldName()) {
+                    switch (fi.getFieldName()) {
 
-                    case "title":
-                        // Set the article's title from the form field
-                        newArticle.setTitle(fi.getString());
-                        break;
-
-                    case "content":
-                        // Set the article's content from the form field
-                        newArticle.setContent(fi.getString());
-                        break;
-
-                    case "image":
-                        // Save the uploaded image, and set the article's image fileName from the form field
-                        if (!fi.getName().isEmpty()){
-                        File imageFile = new File(this.uploadsFolder, fi.getName());
-                        newArticle.setImageFilename(fi.getName());
-                        fi.write(imageFile);
-                        break;}else {
-                            newArticle.setImageFilename(null);
+                        case "title":
+                            // Set the article's title from the form field
+                            newArticle.setTitle(fi.getString());
                             break;
-                        }
 
-                    case "time":
-                        String date = fi.getString();
-                        newArticle.setDate(java.sql.Date.valueOf(date));
-                        break;
+                        case "content":
+                            // Set the article's content from the form field
+                            newArticle.setContent(fi.getString());
+                            break;
 
+                        case "image":
+                            // Save the uploaded image, and set the article's image fileName from the form field
+                            if (!fi.getName().isEmpty()){
+                                File imageFile = new File(this.uploadsFolder, fi.getName());
+                                newArticle.setImageFilename(fi.getName());
+                                fi.write(imageFile);
+                                break;}else {
+                                newArticle.setImageFilename(null);
+                                break;
+                            }
+
+                        case "time":
+                            String date = fi.getString();
+                            newArticle.setDate(java.sql.Date.valueOf(date));
+                            break;
+
+                    }
                 }
-            }
 
-            // Save the article to the DB.
-            try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
-                ArticleDAO.insertArticle(newArticle, conn);
-                //ArticleDAO.insertImage(newArticle, conn);
-            }
+                // Save the article to the DB.
+                try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
+                    ArticleDAO.insertArticle(newArticle, conn);
+                    //ArticleDAO.insertImage(newArticle, conn);
+                }
 
-        } catch (Exception e) {
-            throw new ServletException(e);
-        }}
+            } catch (Exception e) {
+                throw new ServletException(e);
+            }}
         if (userId == null){
             req.getRequestDispatcher("WEB-INF/view/userlogin.jsp").forward(req, resp);
         }

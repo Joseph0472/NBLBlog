@@ -21,10 +21,10 @@
 
             <button type="submit" value="${comment.id}" name="parentIdForNestedComments" id="parentid" onclick="displayNestedComments(${comment.id})">Display Comments(${comment.childNumber})</button>
             <button type="submit" value="${comment.id}" name="parentIdForNewNestedComment" id="parentidfornewnestedcomment" onclick="displayTextarea(${comment.id})">New Comment</button>
-<%--            console.log(${comment.id});--%>
+            <%--            console.log(${comment.id});--%>
             <div name="display-nested-comments" id="${comment.id}"></div>
             <div name="add-new-nested-comments" id="textarea-${comment.id}"></div>
-<%--                        console.log(textarea-${comment.id});--%>
+            <%--                        console.log(textarea-${comment.id});--%>
 
         </c:if>
     </c:forEach>

@@ -6,6 +6,8 @@
 <head>
     <title>My Articles</title>
     <link rel="stylesheet" href="./css/site.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <link href="./froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="./froala-editor/js/froala_editor.pkgd.min.js"></script>
     <link href="./froala-editor/css/plugins/image.min.css" rel="stylesheet" type="text/css" />
@@ -18,6 +20,8 @@
     <script type="text/javascript" src="./froala-editor/js/third_party/embedly.min.js"></script>
     <script type="text/javascript" src="./froala-editor/js/plugins/font_family.min.js"></script>
     <script type="text/javascript" src="./froala-editor/js/plugins/font_size.min.js"></script>
+    <link href="./froala-editor/froala-audio-master/froala-audio.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./froala-editor/froala-audio-master/src/froala-audio.js"></script>
 </head>
 <body>
 <header>
@@ -64,7 +68,10 @@
             new FroalaEditor('#new-article-body', {
                 requestWithCORS: true,
                 // Set the image upload URL.
-                imageUploadURL: '/upload_image',imageUploadParams: {
+                imageUploadURL: '/upload_image',
+                videoUploadURL:'/upload_video',
+                audioUploadURL:'/upload_audio',
+                imageUploadParams: {
                     id: 'my_editor'
                 },
                 events: {
@@ -90,7 +97,7 @@
 </c:if>
 <c:if test = "${UserIdBySession == null}">
     <%--    <a href="/userlogin"><h3>please log in</h3></a>--%>
-    <jsp:include page="/WEB-INF/view/userlogin.jsp"/>
+    <jsp:include page="/WEB-INF/view/user-login.jsp"/>
 </c:if>
 
 </body>

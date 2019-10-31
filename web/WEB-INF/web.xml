@@ -112,7 +112,15 @@
         <servlet-name>Articles</servlet-name>
         <url-pattern>/articles</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>robot</servlet-name>
+        <jsp-file>/WEB-INF/view/robot.jsp</jsp-file>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>robot</servlet-name>
+        <url-pattern>/robot</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ArticlesByUsers</servlet-name>
         <servlet-class>ictgradschool.web.deployments.controller.ArticleListServletbyUser</servlet-class>
@@ -173,7 +181,7 @@
         <url-pattern>/changeArticle</url-pattern>
     </servlet-mapping>
 
-        <!--============================= Lucas part end =================================================-->
+    <!--============================= Lucas part end =================================================-->
 
     <servlet>
         <servlet-name>NewComment</servlet-name>

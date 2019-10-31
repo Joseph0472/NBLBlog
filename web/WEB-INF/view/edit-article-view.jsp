@@ -6,6 +6,8 @@
 <head>
     <title>My Articles</title>
     <link rel="stylesheet" href="./css/site.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <link href="./froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="./froala-editor/js/froala_editor.pkgd.min.js"></script>
     <link href="./froala-editor/css/plugins/image.min.css" rel="stylesheet" type="text/css" />
@@ -18,6 +20,8 @@
     <script type="text/javascript" src="./froala-editor/js/third_party/embedly.min.js"></script>
     <script type="text/javascript" src="./froala-editor/js/plugins/font_family.min.js"></script>
     <script type="text/javascript" src="./froala-editor/js/plugins/font_size.min.js"></script>
+    <link href="./froala-editor/froala-audio-master/froala-audio.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./froala-editor/froala-audio-master/src/froala-audio.js"></script>
 </head>
 <body>
 <header>
@@ -54,8 +58,25 @@
             >${article.content}</textarea>
             <script>
                 new FroalaEditor('#new-article-body', {
-                    imageUploadURL: '/upload_image'
-                })
+                    requestWithCORS: true,
+                    // Set the image upload URL.
+                    imageUploadURL: '/upload_image',
+                    videoUploadURL:'/upload_video',
+                    audioUploadURL:'/upload_audio',
+                    imageUploadParams: {
+                        id: 'my_editor'
+                    },
+                    events: {
+                        'image.beforeUpload': function (images) {
+                            // Return false if you want to stop the image upload.
+                        },
+                        // 'image.uploaded': function (response) {
+                        //     sleep(5000)
+                        //     // Image was uploaded to the server.
+                        // },
+                    }}
+                )
+
             </script>
 
         </div>

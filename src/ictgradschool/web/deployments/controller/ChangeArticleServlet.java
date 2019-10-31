@@ -93,10 +93,10 @@ public class ChangeArticleServlet extends HttpServlet {
                     case "image":
                         // Save the uploaded image, and set the article's image fileName from the form field
                         if (!fi.getName().isEmpty()){
-                        File imageFile = new File(this.uploadsFolder, fi.getName());
-                        newArticle.setImageFilename(fi.getName());
-                        fi.write(imageFile);
-                        break;}else {
+                            File imageFile = new File(this.uploadsFolder, fi.getName());
+                            newArticle.setImageFilename(fi.getName());
+                            fi.write(imageFile);
+                            break;}else {
                             newArticle.setImageFilename(newArticle.getImageFilename());
                             break;
                         }

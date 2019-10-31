@@ -3,10 +3,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>User Login</title>
-<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>User Login</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://www.google.com/recaptcha/api.js?render=6Lcqnr8UAAAAAJEM7cFLvmTAQHUHorvyMVLVRw0L"></script>
 	<script>
@@ -20,10 +20,11 @@
 							type: "post",
 							url: "check",
 							data: {"token": token},
-							success: (res, test, test2) => {
+							success: (res) => {
 								console.log( res);
-								console.log(test);
-								console.log(test2);
+								if (Number(res)<0.5) {//根据返回值进行跳转
+									window.location.href = '/robot';
+								}
 							}
 
 						}
