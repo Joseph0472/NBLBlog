@@ -11,17 +11,7 @@
     <title>Update Account</title>
     <link href="./froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/css/avatar.css">
-    <script type="text/javascript" src="./froala-editor/js/froala_editor.pkgd.min.js"></script>
-    <link href="./froala-editor/css/plugins/image.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="./froala-editor/js/plugins/image.min.js"></script>
-    <link href="./froala-editor/css/plugins/image_manager.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="./froala-editor/js/plugins/image_manager.min.js"></script>
-    <link href="./froala-editor/css/plugins/video.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="./froala-editor/js/plugins/video.min.js"></script>
-    <link href="./froala-editor/css/third_party/embedly.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="./froala-editor/js/third_party/embedly.min.js"></script>
-    <script type="text/javascript" src="./froala-editor/js/plugins/font_family.min.js"></script>
-    <script type="text/javascript" src="./froala-editor/js/plugins/font_size.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <header>
@@ -83,7 +73,7 @@
         </h1>
         <div class="avatar-upload">
             <div class="avatar-edit">
-                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" />
                 <label for="imageUpload"></label>
             </div>
             <div class="avatar-preview">
@@ -222,6 +212,22 @@
 <%--        }--%>
 <%--    }--%>
 <%--</script>--%>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
+    </script>
 </body>
 </html>

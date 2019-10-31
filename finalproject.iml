@@ -45,5 +45,6 @@
     <orderEntry type="library" name="javax.servlet.jsp" level="project" />
     <orderEntry type="library" name="javax.transaction" level="project" />
     <orderEntry type="library" name="wysiwyg-editor-java-sdk (3)" level="project" />
+    <orderEntry type="library" name="jquery-3.3.1" level="application" />
   </component>
 </module>

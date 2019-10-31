@@ -105,7 +105,7 @@ public class UpdateAccountInfoServlet extends HttpServlet{
                                     createThumbnail(avatarFile, this.uploadsFolder);
 
                                     newAccountInfo.setAvatarFileName(fi.getName());
-//                                    fi.write(avatarFile);
+                                    fi.write(avatarFile);
                                     break;
                                 }else {
                                     newAccountInfo.setAvatarFileName(null);
@@ -178,11 +178,13 @@ public class UpdateAccountInfoServlet extends HttpServlet{
         request.getRequestDispatcher("WEB-INF/view/user-interface.jsp").forward(request, response);
     }
 
-    private static void createThumbnail(File imageFile, File outputDirectory) throws IOException {
+    private static File createThumbnail(File imageFile, File outputDirectory) throws IOException {
         BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
         img.createGraphics().drawImage(ImageIO.read(imageFile).getScaledInstance(100, 100, Image.SCALE_SMOOTH), 0, 0, null);
 
         File thumbnailFile = new File(outputDirectory.getCanonicalPath() + File.separator + imageFile.getName());
-        ImageIO.write(img, "jpg", thumbnailFile);
+        return thumbnailFile;
+//        ImageIO.write(img, "jpg", thumbnailFile);
+        //concurrency????
     }
 }
