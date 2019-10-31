@@ -10,6 +10,7 @@
 <head>
     <title>Update Account</title>
     <link href="./froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/avatar.css">
     <script type="text/javascript" src="./froala-editor/js/froala_editor.pkgd.min.js"></script>
     <link href="./froala-editor/css/plugins/image.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="./froala-editor/js/plugins/image.min.js"></script>
@@ -29,7 +30,25 @@
 <h1>Account Info Update</h1>
 <p>(get username from session. If the user has no account info, it should say/display: you need to create your
     account info at very first time. If the user has account info, just update it.)</p>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
 
+        }
+    }
+
+    $("#imageUpload").change(function() {
+        readURL(this);
+    });
+</script>
+<%--TODO: check this out and debug code above : https://codepen.io/siremilomir/pen/jBbQGo--%>
 <%--<form id="form" method="post" action="/userInterface">--%>
 <%--    <p>First Name<input type="text" id="fname" name="fname"></p>--%>
 <%--    <p>Last Name<input type="text" id="lname" name="lname"></p>--%>
@@ -56,8 +75,24 @@
         <p>Country<input id="country" name="country"></p>
         <p>Description</p><textarea id="description" name="description"></textarea>
 
-        <p>Choose a avatar or update your own one</p><input type="file" name="avatar" accept="image/png, image/jpeg" />
+<%--        <p>Choose a avatar or update your own one</p><input type="file" name="avatar" accept="image/png, image/jpeg" />--%>
         <%--<p><time hidden name="timestamp" value="gettimestamp()">time</time></p>--%>
+    <div class="container">
+        <h1>jQuery Image Upload
+            <small>with preview</small>
+        </h1>
+        <div class="avatar-upload">
+            <div class="avatar-edit">
+                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                <label for="imageUpload"></label>
+            </div>
+            <div class="avatar-preview">
+                <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div>
         <button type="submit" value="submit">Submit</button>
     </div>
@@ -187,5 +222,6 @@
 <%--        }--%>
 <%--    }--%>
 <%--</script>--%>
+
 </body>
 </html>
