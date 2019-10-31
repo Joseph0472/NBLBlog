@@ -53,40 +53,13 @@
         <p>Email Address<input type="text" id="email" name="email"></p>
         <p>Phone<input type="text" id="phonenum" name="phonenum"></p>
         <p>Date of Birth<input type="date" name="date" max= 2029-10-10></p> <%--date here should be handled as String--%>
-    <%--TODO: copy the dropdown list from the former project, and make the desc done, and avatar--%>
-        <p>Country<input id="country" name="country"><p>
-        <p>Description<textarea id="description" name="description"><p>
+        <p>Country<input id="country" name="country"></p>
+        <p>Description</p><textarea id="description" name="description"></textarea>
 
-        <p>Choose a avatar or update your own one<input type="file" name="avatar"></p>
-
-        <p><time hidden name="timestamp" value="gettimestamp()">time</time></p>
+        <p>Choose a avatar or update your own one</p><input type="file" name="avatar" accept="image/png, image/jpeg" />
+        <%--<p><time hidden name="timestamp" value="gettimestamp()">time</time></p>--%>
     <div>
-        <button type="submit">Submit</button>
-    </div>
-
-    <script>
-
-        new FroalaEditor('#new-article-body', {
-            requestWithCORS: true,
-            // Set the image upload URL.
-            imageUploadURL: '/upload_image',imageUploadParams: {
-                id: 'my_editor'
-            },
-            events: {
-                'image.beforeUpload': function (images) {
-                    // Return false if you want to stop the image upload.
-                },
-                // 'image.uploaded': function (response) {
-                //     sleep(5000)
-                //     // Image was uploaded to the server.
-                // },
-            }}
-        )
-
-    </script>
-
-    <div>
-        <button type="submit">Submit</button>
+        <button type="submit" value="submit">Submit</button>
     </div>
 
 <%--<script type="text/javascript">--%>

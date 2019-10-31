@@ -9,11 +9,14 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
@@ -45,18 +48,18 @@ public class UpdateAccountInfoServlet extends HttpServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//        UserInfoJavaBean newAccountInfo = new UserInfoJavaBean();
+        UserInfoJavaBean newAccountInfo = new UserInfoJavaBean();
 
         Integer userId = (Integer) request.getSession().getAttribute("UserIdBySession");
 
-        if (userId != null) {
+        if (userId != -1) {
             // Set up file upload mechanism
             DiskFileItemFactory factory = new DiskFileItemFactory();
             factory.setRepository(tempFolder);
             ServletFileUpload upload = new ServletFileUpload(factory);
 
             // Somewhere to put the information
-            UserInfoJavaBean newAccountInfo = new UserInfoJavaBean();
+//            UserInfoJavaBean newAccountInfo = new UserInfoJavaBean();
 
             newAccountInfo.setUserid(userId);
 
@@ -65,6 +68,7 @@ public class UpdateAccountInfoServlet extends HttpServlet{
                     for (FileItem fi : fileItems) {
 
                         switch (fi.getFieldName()){
+
                             case "fname":
                                 newAccountInfo.setFname(fi.getString());
                                 break;
@@ -82,11 +86,11 @@ public class UpdateAccountInfoServlet extends HttpServlet{
                                 break;
 
                             case "date":
-                                newAccountInfo.setDob(fi.toString());
+                                newAccountInfo.setDob(fi.getString());
                                 break;
 
                             case "country":
-                                newAccountInfo.setCountry(fi.toString());
+                                newAccountInfo.setCountry(fi.getString());
                                 break;
 
                             case "description":
@@ -97,8 +101,11 @@ public class UpdateAccountInfoServlet extends HttpServlet{
                                 // Save the uploaded image, and set the article's image fileName from the form field
                                 if (!fi.getName().isEmpty()){
                                     File avatarFile = new File(this.uploadsFolder, fi.getName());
+                                    System.out.println(fi.getName());
+                                    createThumbnail(avatarFile, this.uploadsFolder);
+
                                     newAccountInfo.setAvatarFileName(fi.getName());
-                                    fi.write(avatarFile);
+//                                    fi.write(avatarFile);
                                     break;
                                 }else {
                                     newAccountInfo.setAvatarFileName(null);
@@ -109,6 +116,10 @@ public class UpdateAccountInfoServlet extends HttpServlet{
                     }
 
                 try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
+                    System.out.println(newAccountInfo.getFname());
+                    System.out.println(newAccountInfo.getCountry());
+                    System.out.println(newAccountInfo.getAvatarFileName());
+                    System.out.println(newAccountInfo.getCountry());
                     UserDAO.addUserInfo(newAccountInfo, conn);
                 }
 
@@ -118,11 +129,14 @@ public class UpdateAccountInfoServlet extends HttpServlet{
             }
         }
 
-        if (userId == null){
+        if (userId == -1){
             request.getRequestDispatcher("WEB-INF/view/userlogin.jsp").forward(request, response);
-
         }
+
 //        response.sendRedirect("./user");
+        request.setAttribute("newAccountInfo", newAccountInfo);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/user-interface.jsp");
+        dispatcher.forward(request, response);
         request.getRequestDispatcher("WEB-INF/view/user-interface.jsp").forward(request, response);
 
 //        newAccountInfo.setFname(request.getParameter("fname"));
@@ -161,6 +175,14 @@ public class UpdateAccountInfoServlet extends HttpServlet{
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/view/user-interface.jsp").forward(req, resp);
+        request.getRequestDispatcher("WEB-INF/view/user-interface.jsp").forward(request, response);
+    }
+
+    private static void createThumbnail(File imageFile, File outputDirectory) throws IOException {
+        BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+        img.createGraphics().drawImage(ImageIO.read(imageFile).getScaledInstance(100, 100, Image.SCALE_SMOOTH), 0, 0, null);
+
+        File thumbnailFile = new File(outputDirectory.getCanonicalPath() + File.separator + imageFile.getName());
+        ImageIO.write(img, "jpg", thumbnailFile);
     }
 }
