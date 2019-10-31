@@ -1,0 +1,30 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="finalproject:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/finalproject_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="finalproject" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="wysiwyg-editor-java-sdk (3)" />
+          <element id="library" level="project" name="javax.transaction" />
+          <element id="library" level="project" name="javax.resource" />
+          <element id="library" level="project" name="javax.persistence" />
+          <element id="library" level="project" name="javax.json-1.1.4 (3)" />
+          <element id="library" level="project" name="javax.jms" />
+          <element id="library" level="project" name="javax.annotation" />
+          <element id="library" level="project" name="gson-2.8.6" />
+          <element id="library" level="project" name="fastjson-1.1.6" />
+          <element id="library" level="project" name="commons-lang-2.6" />
+          <element id="library" level="project" name="commons-codec-1.1" />
+          <element id="library" level="project" name="wysiwyg-editor-java-sdk (2)" />
+          <element id="library" level="project" name="javax.json-1.1.4 (2)" />
+          <element id="library" level="project" name="com.google.code.gson:gson:2.8.6" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="finalproject/web/Web" />
+    </root>
+  </artifact>
+</component>
