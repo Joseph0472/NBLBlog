@@ -9,28 +9,58 @@
 <html>
 <head>
     <title>Update Account</title>
+    <link href="./froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./froala-editor/js/froala_editor.pkgd.min.js"></script>
+    <link href="./froala-editor/css/plugins/image.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./froala-editor/js/plugins/image.min.js"></script>
+    <link href="./froala-editor/css/plugins/image_manager.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./froala-editor/js/plugins/image_manager.min.js"></script>
+    <link href="./froala-editor/css/plugins/video.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./froala-editor/js/plugins/video.min.js"></script>
+    <link href="./froala-editor/css/third_party/embedly.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./froala-editor/js/third_party/embedly.min.js"></script>
+    <script type="text/javascript" src="./froala-editor/js/plugins/font_family.min.js"></script>
+    <script type="text/javascript" src="./froala-editor/js/plugins/font_size.min.js"></script>
 </head>
 <body>
+<header>
+    <jsp:include page="/WEB-INF/view/nav.jsp"/>
+</header>
 <h1>Account Info Update</h1>
 <p>(get username from session. If the user has no account info, it should say/display: you need to create your
     account info at very first time. If the user has account info, just update it.)</p>
 
-<form id="form" method="post" action="/userInterface">
-    <p>First Name<input type="text" id="fname" name="fname"></p>
-    <p>Last Name<input type="text" id="lname" name="fname"></p>
-    <p>Email Address<input type="text" id="email"></p>
-    <p>Phone<input type="text" id="phonenum"></p>
-    <p>Date of Birth<input type="date" id="date" max= 2029-10-10></p> <%--date here should be handled as String--%>
-<%--TODO: copy the dropdown list from the former project, and make the desc done, and avatar--%>
-    <p>Country<input id="country"><p>
-    <p>Description<input id="description"><p>
+<%--<form id="form" method="post" action="/userInterface">--%>
+<%--    <p>First Name<input type="text" id="fname" name="fname"></p>--%>
+<%--    <p>Last Name<input type="text" id="lname" name="lname"></p>--%>
+<%--    <p>Email Address<input type="text" id="email"></p>--%>
+<%--    <p>Phone<input type="text" id="phonenum"></p>--%>
+<%--    <p>Date of Birth<input type="date" id="date" max= 2029-10-10></p> &lt;%&ndash;date here should be handled as String&ndash;%&gt;--%>
+<%--&lt;%&ndash;TODO: copy the dropdown list from the former project, and make the desc done, and avatar&ndash;%&gt;--%>
+<%--    <p>Country<input id="country"><p>--%>
+<%--    <p>Description<input id="description"><p>--%>
 
-    <p>Choose a avatar or update your own one<input id="avatar"></p>
+<%--    <p>Choose a avatar or update your own one<input id="avatar"></p>--%>
 
-    <p><time hidden name="timestamp" value="gettimestamp()">time</time></p>
-    <button type="submit" >submit</button>
-    <button type="reset" value="reset">clear</button>
-</form>
+<%--    <p><time hidden name="timestamp" value="gettimestamp()">time</time></p>--%>
+<%--    <button type="submit" >submit</button>--%>
+<%--    <button type="reset" value="reset">clear</button>--%>
+<%--</form>--%>
+<form action="./userInterface" method="post" enctype="multipart/form-data">
+
+        <p>First Name<input type="text" id="fname" name="fname"></p>
+        <p>Last Name<input type="text" id="lname" name="lname"></p>
+        <p>Email Address<input type="text" id="email" name="email"></p>
+        <p>Phone<input type="text" id="phonenum" name="phonenum"></p>
+        <p>Date of Birth<input type="date" name="date" max= 2029-10-10></p> <%--date here should be handled as String--%>
+        <p>Country<input id="country" name="country"></p>
+        <p>Description</p><textarea id="description" name="description"></textarea>
+
+        <p>Choose a avatar or update your own one</p><input type="file" name="avatar" accept="image/png, image/jpeg" />
+        <%--<p><time hidden name="timestamp" value="gettimestamp()">time</time></p>--%>
+    <div>
+        <button type="submit" value="submit">Submit</button>
+    </div>
 
 <%--<script type="text/javascript">--%>
 <%--    function check() {--%>

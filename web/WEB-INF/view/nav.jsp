@@ -12,10 +12,20 @@
 
 <a href="/startpage"> Start </a>      |
 <a href="/user-login"> Login </a>      |
-<a href="/updateInfo"> UserInfo</a>      |
+<a href="/updateInfo"> UpdateUserInfo</a>      |
+<a href="/userInterface"> CheckUserInfo</a>      |
 <a href="/articles"> Articles </a>      |
-<a href="/ArticleContent"> Content </a>      |
-<p> hello <p> username: ${UserNameBySession} id: ${UserIdBySession}</p>      |
-<a href="/log-off"> log off </a>
+<a href="/articlesByUsers"> Personal articles </a>      |
+<a onclick="out()"> log off </a>
+<p> hello: ${UserNameBySession}        your id is: ${UserIdBySession}</p>
+
+<script type="text/javascript">
+    function out(){
+        var result = confirm("Are you sure to log off？");
+        if(result){
+            location.href="/tologoff";
+        }
+    }
+</script>
 
 <%--TODO:use js to show a username or nothing basic on the session content--%>

@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+
     <servlet>
         <servlet-name>signUpServlet</servlet-name>
         <servlet-class>ictgradschool.web.deployments.controller.CreateUserServlet</servlet-class>
@@ -64,7 +65,7 @@
 
     <servlet>
         <servlet-name>UpdateUserInfoServlet</servlet-name>
-<!--        <servlet-class>ictgradschool.web.deployments.controller.UpdateAccountInfoServlet</servlet-class>-->
+        <!--        <servlet-class>ictgradschool.web.deployments.controller.UpdateAccountInfoServlet</servlet-class>-->
         <jsp-file>/WEB-INF/view/update-accountInfo.jsp</jsp-file>
     </servlet>
 
@@ -76,7 +77,7 @@
     <servlet>
         <servlet-name>UserInterface</servlet-name>
         <servlet-class>ictgradschool.web.deployments.controller.UpdateAccountInfoServlet</servlet-class>
-<!--        <jsp-file>/WEB-INF/view/user-interface.jsp</jsp-file>-->
+        <!--        <jsp-file>/WEB-INF/view/user-interface.jsp</jsp-file>-->
     </servlet>
 
     <servlet-mapping>
@@ -84,83 +85,136 @@
         <url-pattern>/userInterface</url-pattern>
     </servlet-mapping>
 
-
-        <!--============================= Joseph part end =================================================-->
-<servlet>
-<servlet-name>Articles</servlet-name>
-<servlet-class>ictgradschool.web.deployments.controller.ArticleListServlet</servlet-class>
-</servlet>
-
-<!--<servlet-mapping>-->
-<!--<servlet-name>Articles</servlet-name>-->
-<!--<url-pattern></url-pattern>-->
-<!--</servlet-mapping>-->
-
-<servlet-mapping>
-<servlet-name>Articles</servlet-name>
-<url-pattern>/articles</url-pattern>
-</servlet-mapping>
-
-<servlet>
-<servlet-name>NewArticle</servlet-name>
-<servlet-class>ictgradschool.web.deployments.controller.NewArticleServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-<servlet-name>NewArticle</servlet-name>
-<url-pattern>/newArticle</url-pattern>
-</servlet-mapping>
-
-<servlet>
-<servlet-name>ArticleContent</servlet-name>
-<servlet-class>ictgradschool.web.deployments.controller.ArticleContentServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-<servlet-name>ArticleContent</servlet-name>
-<url-pattern>/ArticleContent</url-pattern>
-</servlet-mapping>
-
-<servlet>
-<servlet-name>DeleteArticle</servlet-name>
-<servlet-class>ictgradschool.web.deployments.controller.DeleteArticleServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-<servlet-name>DeleteArticle</servlet-name>
-<url-pattern>/deleteArticle</url-pattern>
-</servlet-mapping>
-
-<servlet>
-<servlet-name>EditArticle</servlet-name>
-<servlet-class>ictgradschool.web.deployments.controller.EditArticleServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-<servlet-name>EditArticle</servlet-name>
-<url-pattern>/editArticle</url-pattern>
-</servlet-mapping>
-
-<servlet>
-<servlet-name>ChangeArticle</servlet-name>
-<servlet-class>ictgradschool.web.deployments.controller.ChangeArticleServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-<servlet-name>ChangeArticle</servlet-name>
-<url-pattern>/changeArticle</url-pattern>
-</servlet-mapping>
-
     <servlet>
-        <servlet-name>editorServlet</servlet-name>
-        <servlet-class>ictgradschool.web.deployments.controller.EditorServlet</servlet-class>
+        <servlet-name>logoff</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.LogOffServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
-        <servlet-name>editorServlet</servlet-name>
-        <url-pattern>/editorServlet</url-pattern>
+        <servlet-name>logoff</servlet-name>
+        <url-pattern>/tologoff</url-pattern>
     </servlet-mapping>
 
 
+    <!--=============================== Joseph part end ===============================-->
+    <!--=============================== Lucas part start ===============================-->
+
+    <servlet>
+        <servlet-name>Articles</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.ArticleListServlet</servlet-class>
+    </servlet>
+
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>Articles</servlet-name>-->
+    <!--<url-pattern></url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <servlet-mapping>
+        <servlet-name>Articles</servlet-name>
+        <url-pattern>/articles</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ArticlesByUsers</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.ArticleListServletbyUser</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ArticlesByUsers</servlet-name>
+        <url-pattern>/articlesByUsers</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewArticle</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.NewArticleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NewArticle</servlet-name>
+        <url-pattern>/newArticle</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ArticleContent</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.ArticleContentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ArticleContent</servlet-name>
+        <url-pattern>/ArticleContent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteArticle</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.DeleteArticleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteArticle</servlet-name>
+        <url-pattern>/deleteArticle</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditArticle</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.EditArticleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EditArticle</servlet-name>
+        <url-pattern>/editArticle</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChangeArticle</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.ChangeArticleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ChangeArticle</servlet-name>
+        <url-pattern>/changeArticle</url-pattern>
+    </servlet-mapping>
+
         <!--============================= Lucas part end =================================================-->
+
+    <servlet>
+        <servlet-name>NewComment</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.NewCommentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NewComment</servlet-name>
+        <url-pattern>/newcomment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewNestedComment</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.NewNestedCommentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NewNestedComment</servlet-name>
+        <url-pattern>/new-nested-comment</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DisplayNestedComment</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.DisplayNestedCommentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DisplayNestedComment</servlet-name>
+        <url-pattern>/display-nested-comments</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CheckUsername</servlet-name>
+        <servlet-class>ictgradschool.web.deployments.controller.CheckUsernameServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CheckUsername</servlet-name>
+        <url-pattern>/check-username</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

@@ -18,6 +18,7 @@
 </header>
 <h1> ~~ Welcome to the user interface page ~~ </h1>
 <p> Your true name is ${newAccountInfo.fname}   ${newAccountInfo.lname} </p>
+<p> Your avatar is  <img src="./assets/images/avatars/${newAccountInfo.avatarFileName}"></p>
 <p></p>
 <p></p>
 <p></p>

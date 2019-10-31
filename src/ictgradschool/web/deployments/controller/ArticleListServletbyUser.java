@@ -16,15 +16,21 @@ public class ArticleListServletbyUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Integer userId = (Integer) req.getSession().getAttribute("UserIdBySession");
+        if (userId != null) {
+            try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
 
-        try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
+                List<Article> articlesByUser = ArticleDAO.getArticleByUser(userId, conn);
+                req.setAttribute("articlesByUser", articlesByUser);
 
-            //List<Article> articles = ArticleDAO.getArticleByUser(user_id, conn);
-            //req.setAttribute("articles", articles);
-            req.getRequestDispatcher("WEB-INF/view/article-list-view.jsp").forward(req, resp);
 
-        } catch (SQLException e) {
-            throw new ServletException(e);
+            } catch (SQLException e) {
+                throw new ServletException(e);
+            }
+            req.getRequestDispatcher("WEB-INF/view/articlesByUser-list-view.jsp").forward(req, resp);
+        }
+        if (userId == null){
+            req.getRequestDispatcher("WEB-INF/view/user-login.jsp").forward(req, resp);
         }
     }
 }
