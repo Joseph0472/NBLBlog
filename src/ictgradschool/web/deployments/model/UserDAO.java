@@ -106,15 +106,9 @@ public class UserDAO {
             if (success == 0) {
                 return false;
             }
-//
-//            try (ResultSet rs = stmt.getGeneratedKeys()) {
-//                rs.next();
-//                System.out.println(rs);
-////                user.setUserid(rs.getInt(9));
-//                stmt.setInt(9, user.getUserid());
-//
+
             return true;
-//            }
+
         }
     }
 }
