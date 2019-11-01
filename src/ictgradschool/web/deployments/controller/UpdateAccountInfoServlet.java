@@ -102,10 +102,10 @@ public class UpdateAccountInfoServlet extends HttpServlet{
                                 if (!fi.getName().isEmpty()){
                                     File avatarFile = new File(this.uploadsFolder, fi.getName());
                                     System.out.println(fi.getName());
-                                    createThumbnail(avatarFile, this.uploadsFolder);
+                                    File trimmedPic = createThumbnail(avatarFile, this.uploadsFolder);
 
                                     newAccountInfo.setAvatarFileName(fi.getName());
-                                    fi.write(avatarFile);
+                                    fi.write(trimmedPic);
                                     break;
                                 }else {
                                     newAccountInfo.setAvatarFileName(null);

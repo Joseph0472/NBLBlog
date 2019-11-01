@@ -36,6 +36,23 @@ public class UserDAO {
         }
     }
 
+    public static String getUserFullNameByUserId(int userId, Connection conn) throws SQLException {
+        try (PreparedStatement stmt = conn.prepareStatement("select fname, lname from fp_userInfo where userid = ?")){
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()){
+                if (rs.next()) {
+                    return getUserFullNameFromResulrSet(rs);
+                }else {
+                    return null;
+                }
+            }
+
+        }
+    }
+
+    private static String getUserFullNameFromResulrSet(ResultSet rs) throws SQLException{
+        return rs.getString(1) + " " + rs.getString(2);
+    }
 
     private static int getUserIdFromResulrSet(ResultSet rs) throws SQLException{
         return rs.getInt(1);
@@ -96,7 +113,7 @@ public class UserDAO {
 ////                user.setUserid(rs.getInt(9));
 //                stmt.setInt(9, user.getUserid());
 //
-                return true;
+            return true;
 //            }
         }
     }

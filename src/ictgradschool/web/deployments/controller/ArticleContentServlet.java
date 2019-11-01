@@ -1,10 +1,7 @@
 package ictgradschool.web.deployments.controller;
 
 import ictgradschool.util.DBConnectionUtils;
-import ictgradschool.web.deployments.model.Article;
-import ictgradschool.web.deployments.model.ArticleDAO;
-import ictgradschool.web.deployments.model.Comment;
-import ictgradschool.web.deployments.model.CommentDAO;
+import ictgradschool.web.deployments.model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +23,9 @@ public class ArticleContentServlet extends HttpServlet {
             session.setAttribute("articleId", articleId);
             Article article = ArticleDAO.getArticleById(articleId, conn);
             session.setAttribute("article", article);
+            int userId = article.getUserId();
+            String articleUserName = UserDAO.getUserFullNameByUserId(userId, conn);
+            article.setUserFullName(articleUserName);
 
             req.setAttribute("article", article);
 

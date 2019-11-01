@@ -11,6 +11,15 @@ public class Article {
     private String imageFilename;
     private Integer userId;
     private Date date;
+    private String userFullName;
+
+    public String getUserFullName() {
+        return userFullName;
+    }
+
+    public void setUserFullName(String userFullName) {
+        this.userFullName = userFullName;
+    }
 
 
     public Article(Integer id, String title, String content, String imageFilename,Integer userID, Date date) {
