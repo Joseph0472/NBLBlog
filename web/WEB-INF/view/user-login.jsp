@@ -68,7 +68,12 @@
 		}
 
 	</script>
-
+	<script>
+		function setUsernameCookie() {
+			let value = document.querySelector('#username').value;
+			document.cookie = "value=" + value + "; path=/";
+		}
+	</script>
 </head>
 
 <body>
@@ -149,7 +154,7 @@
 					<label for="password">Password:</label>
 					<input type="password" name="password" id="password" class="full-width" placeholder="Password">
 
-					<button type="submit" id="login-button" class="submit btn btn--primary btn--large full-width">
+					<button type="submit" id="login-button" class="submit btn btn--primary btn--large full-width" onclick="setUsernameCookie()">
 						LOG IN
 					</button>
 					<a href="/user-signup" id="signup-button" class="btn btn-warning btn--large full-width" role="button">
