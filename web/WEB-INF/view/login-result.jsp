@@ -14,14 +14,22 @@
 </head>
 <body>
 <header>
-    <jsp:include page="/WEB-INF/view/nav.jsp"/>
 </header>
-<h1>Your name and login status:</h1>
-<p>Hello: ${UserNameBySession}, your user id is: ${UserIdBySession}</p>
-<%--<p>Your true name is: ${newAccountInfo.fname}   ${newAccountInfo.lname}</p>--%>
+<h1>Login success...</h1>
+<%--<p>Hello: ${UserNameBySession}, your user id is: ${UserIdBySession}</p>--%>
+<input type="hidden" id="UsernameCookie" value="${UserNameBySession}">
+<input type="hidden" id="LoginStatusBySession" value="${LoginStatusBySession}">
 </p>
-<%--<% response.sendRedirect("WEB-INF/view/login-result.jsp"); %>--%>
-<meta http-equiv="refresh" content="1;url=/updateInfo">
+<meta http-equiv="refresh" content="0;url=/articles">
+<script>
+    window.addEventListener("load", function setUsernameCookie() {
 
+        let loginstatus = document.querySelector('#LoginStatusBySession')
+        if (loginstatus == true) {
+            let username = document.querySelector('#usernameCookie').value;
+            document.cookie = "username=" + username + "; path=/";
+        }
+    });
+</script>
 </body>
 </html>

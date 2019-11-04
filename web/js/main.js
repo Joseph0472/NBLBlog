@@ -1,18 +1,18 @@
 /* ===================================================================
- * Wordsmith - Main JS
+ Main JS
  *
  * ------------------------------------------------------------------- */
 
-(function($) {
+(function ($) {
 
     "use strict";
-    
-    var cfg = {
-        scrollDuration : 800, // smoothscroll duration
-        mailChimpURL   : 'https://facebook.us8.list-manage.com/subscribe/post?u=cdb7b577e41181934ed6a6a44&amp;id=e6957d85dc'   // mailchimp url
-    },
 
-    $WIN = $(window);
+    var cfg = {
+            scrollDuration: 800, // smoothscroll duration
+            mailChimpURL: 'https://facebook.us8.list-manage.com/subscribe/post?u=cdb7b577e41181934ed6a6a44&amp;id=e6957d85dc'   // mailchimp url
+        },
+
+        $WIN = $(window);
 
     // Add the User Agent to the <html>
     // will be used for IE10 detection (Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0))
@@ -20,41 +20,41 @@
     doc.setAttribute('data-useragent', navigator.userAgent);
 
 
-   /* Preloader
-    * -------------------------------------------------- */
-    var clPreloader = function() {
-        
+    /* Preloader
+     * -------------------------------------------------- */
+    var clPreloader = function () {
+
         $("html").addClass('ss-preload');
 
-        $WIN.on('load', function() {
+        $WIN.on('load', function () {
 
             //force page scroll position to top at page refresh
             // $('html, body').animate({ scrollTop: 0 }, 'normal');
 
             // will first fade out the loading animation 
-            $("#loader").fadeOut("slow", function() {
+            $("#loader").fadeOut("slow", function () {
                 // will fade out the whole DIV that covers the website.
                 $("#preloader").delay(300).fadeOut("slow");
-            }); 
-       
+            });
+
         });
     };
 
 
-   /* pretty print
-    * -------------------------------------------------- */ 
-    var clPrettyPrint = function() {
+    /* pretty print
+     * -------------------------------------------------- */
+    var clPrettyPrint = function () {
         $('pre').addClass('prettyprint');
-        $( document ).ready(function() {
+        $(document).ready(function () {
             prettyPrint();
         });
     };
 
 
-   /* search
-    * ------------------------------------------------------ */
-    var clSearch = function() {
-            
+    /* search
+     * ------------------------------------------------------ */
+    var clSearch = function () {
+
         var searchWrap = $('.header__search'),
             searchField = searchWrap.find('.search-field'),
             closeSearch = searchWrap.find('.header__overlay-close'),
@@ -62,59 +62,59 @@
             siteBody = $('body');
 
 
-        searchTrigger.on('click', function(e) {
-            
+        searchTrigger.on('click', function (e) {
+
             e.preventDefault();
             e.stopPropagation();
-        
+
             var $this = $(this);
-        
+
             siteBody.addClass('search-is-visible');
-            setTimeout(function(){
+            setTimeout(function () {
                 searchWrap.find('.search-field').focus();
             }, 100);
-        
+
         });
 
-        closeSearch.on('click', function(e) {
+        closeSearch.on('click', function (e) {
 
             var $this = $(this);
-        
-            e.stopPropagation(); 
-        
-            if(siteBody.hasClass('search-is-visible')){
+
+            e.stopPropagation();
+
+            if (siteBody.hasClass('search-is-visible')) {
                 siteBody.removeClass('search-is-visible');
-                setTimeout(function(){
+                setTimeout(function () {
                     searchWrap.find('.search-field').blur();
                 }, 100);
             }
         });
 
-        searchWrap.on('click',  function(e) {
-            if( !$(e.target).is('.search-field') ) {
+        searchWrap.on('click', function (e) {
+            if (!$(e.target).is('.search-field')) {
                 closeSearch.trigger('click');
             }
         });
-            
-        searchField.on('click', function(e){
+
+        searchField.on('click', function (e) {
             e.stopPropagation();
         });
-            
+
         searchField.attr({placeholder: 'Type Keywords', autocomplete: 'off'});
 
     };
 
 
-   /* Mobile Menu
-    * ---------------------------------------------------- */ 
-   var clMobileMenu = function() {
+    /* Mobile Menu
+     * ---------------------------------------------------- */
+    var clMobileMenu = function () {
 
         var navWrap = $('.header__nav-wrap'),
             closeNavWrap = navWrap.find('.header__overlay-close'),
             menuToggle = $('.header__toggle-menu'),
             siteBody = $('body');
-        
-        menuToggle.on('click', function(e) {
+
+        menuToggle.on('click', function (e) {
             var $this = $(this);
 
             e.preventDefault();
@@ -122,14 +122,14 @@
             siteBody.addClass('nav-wrap-is-visible');
         });
 
-        closeNavWrap.on('click', function(e) {
-            
+        closeNavWrap.on('click', function (e) {
+
             var $this = $(this);
-            
+
             e.preventDefault();
             e.stopPropagation();
-        
-            if(siteBody.hasClass('nav-wrap-is-visible')) {
+
+            if (siteBody.hasClass('nav-wrap-is-visible')) {
                 siteBody.removeClass('nav-wrap-is-visible');
             }
         });
@@ -157,10 +157,10 @@
     };
 
 
-   /* slick slider
-    * ------------------------------------------------------ */
-    var clSlickSlider = function() {
-        
+    /* slick slider
+     * ------------------------------------------------------ */
+    var clSlickSlider = function () {
+
         $('.featured-slider').slick({
             arrows: true,
             dots: true,
@@ -198,16 +198,16 @@
     };
 
 
-   /* Smooth Scrolling
-    * ------------------------------------------------------ */
-    var clSmoothScroll = function() {
-        
+    /* Smooth Scrolling
+     * ------------------------------------------------------ */
+    var clSmoothScroll = function () {
+
         $('.smoothscroll').on('click', function (e) {
             var target = this.hash,
-            $target    = $(target);
-            
-                e.preventDefault();
-                e.stopPropagation();
+                $target = $(target);
+
+            e.preventDefault();
+            e.stopPropagation();
 
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top
@@ -225,22 +225,22 @@
     };
 
 
-   /* Alert Boxes
-    * ------------------------------------------------------ */
-    var clAlertBoxes = function() {
+    /* Alert Boxes
+     * ------------------------------------------------------ */
+    var clAlertBoxes = function () {
 
-        $('.alert-box').on('click', '.alert-box__close', function() {
+        $('.alert-box').on('click', '.alert-box__close', function () {
             $(this).parent().fadeOut(500);
-        }); 
+        });
 
     };
 
 
-   /* Animate On Scroll
-    * ------------------------------------------------------ */
-    var clAOS = function() {
-        
-        AOS.init( {
+    /* Animate On Scroll
+     * ------------------------------------------------------ */
+    var clAOS = function () {
+
+        AOS.init({
             offset: 200,
             duration: 600,
             easing: 'ease-in-sine',
@@ -252,319 +252,27 @@
     };
 
 
-   /* AjaxChimp
-    * ------------------------------------------------------ */
-    var clAjaxChimp = function() {
-        
-        $('#mc-form').ajaxChimp({
-            language: 'es',
-            url: cfg.mailChimpURL
-        });
+    /* Back to Top
+     * ------------------------------------------------------ */
+    var clBackToTop = function () {
 
-        // Mailchimp translation
-        //
-        //  Defaults:
-        //	 'submit': 'Submitting...',
-        //  0: 'We have sent you a confirmation email',
-        //  1: 'Please enter a value',
-        //  2: 'An email address must contain a single @',
-        //  3: 'The domain portion of the email address is invalid (the portion after the @: )',
-        //  4: 'The username portion of the email address is invalid (the portion before the @: )',
-        //  5: 'This email address looks fake or invalid. Please enter a real email address'
-
-        $.ajaxChimp.translations.es = {
-            'submit': 'Submitting...',
-            0: '<i class="fas fa-check"></i> We have sent you a confirmation email',
-            1: '<i class="fas fa-exclamation-circle"></i> You must enter a valid e-mail address.',
-            2: '<i class="fas fa-exclamation-circle"></i> E-mail address is not valid.',
-            3: '<i class="fas fa-exclamation-circle"></i> E-mail address is not valid.',
-            4: '<i class="fas fa-exclamation-circle"></i> E-mail address is not valid.',
-            5: '<i class="fas fa-exclamation-circle"></i> E-mail address is not valid.'
-        } 
-
-    };
-
-
-   /* Back to Top
-    * ------------------------------------------------------ */
-    var clBackToTop = function() {
-        
-        var pxShow      = 500,
+        var pxShow = 500,
             goTopButton = $(".go-top")
 
         // Show or hide the button
         if ($(window).scrollTop() >= pxShow) goTopButton.addClass('link-is-visible');
 
-        $(window).on('scroll', function() {
+        $(window).on('scroll', function () {
             if ($(window).scrollTop() >= pxShow) {
-                if(!goTopButton.hasClass('link-is-visible')) goTopButton.addClass('link-is-visible')
+                if (!goTopButton.hasClass('link-is-visible')) goTopButton.addClass('link-is-visible')
             } else {
                 goTopButton.removeClass('link-is-visible')
             }
         });
     };
 
-
-    /* Map
-    * ------------------------------------------------------ */
-
-    // add custom buttons for the zoom-in/zoom-out on the map
-    var clCustomZoomControl = function(controlDiv, map) {
-            
-        // grap the zoom elements from the DOM and insert them in the map 
-        var controlUIzoomIn= document.getElementById('map-zoom-in'),
-                controlUIzoomOut= document.getElementById('map-zoom-out');
-
-        controlDiv.appendChild(controlUIzoomIn);
-        controlDiv.appendChild(controlUIzoomOut);
-
-        // Setup the click event listeners and zoom-in or out according to the clicked element
-        google.maps.event.addDomListener(controlUIzoomIn, 'click', function() {
-            map.setZoom(map.getZoom()+1)
-        });
-        google.maps.event.addDomListener(controlUIzoomOut, 'click', function() {
-            map.setZoom(map.getZoom()-1)
-        });
-            
-    };
-
-	var clGoogleMap = function() { 
-
-        if (typeof google === 'object' && typeof google.maps === 'object') {
-
-            // 37.422424, -122.085661
-
-            var latitude = 37.422424,
-                longitude = -122.085661,
-                map_zoom = 14,
-                main_color = '#0054a5',
-                saturation_value = -30,
-                brightness_value = 5,
-                marker_url = null,
-                winWidth = $(window).width();
-
-            // show controls
-            $("#map-zoom-in, #map-zoom-out").show();
-
-            // marker url
-            if ( winWidth > 480 ) {
-                marker_url = 'images/icon-location@2x.png';
-            } else {
-                marker_url = 'images/icon-location.png';
-            }
-
-            // map style
-            var style = [ 
-                {
-                    // set saturation for the labels on the map
-                    elementType: "labels",
-                    stylers: [
-                        { saturation: saturation_value }
-                    ]
-                },  
-                {	// poi stands for point of interest - don't show these lables on the map 
-                    featureType: "poi",
-                    elementType: "labels",
-                    stylers: [
-                        {visibility: "off"}
-                    ]
-                },
-                {
-                    // don't show highways lables on the map
-                    featureType: 'road.highway',
-                    elementType: 'labels',
-                    stylers: [
-                        { visibility: "off" }
-                    ]
-                }, 
-                { 	
-                    // don't show local road lables on the map
-                    featureType: "road.local",
-                    elementType: "labels.icon",
-                    stylers: [
-                        { visibility: "off" } 
-                    ] 
-                },
-                { 
-                    // don't show arterial road lables on the map
-                    featureType: "road.arterial",
-                    elementType: "labels.icon",
-                    stylers: [
-                        { visibility: "off" }
-                    ] 
-                },
-                {
-                    // don't show road lables on the map
-                    featureType: "road",
-                    elementType: "geometry.stroke",
-                    stylers: [
-                        { visibility: "off" }
-                    ]
-                }, 
-                // style different elements on the map
-                { 
-                    featureType: "transit", 
-                    elementType: "geometry.fill", 
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                }, 
-                {
-                    featureType: "poi",
-                    elementType: "geometry.fill",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                },
-                {
-                    featureType: "poi.government",
-                    elementType: "geometry.fill",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                },
-                {
-                    featureType: "poi.sport_complex",
-                    elementType: "geometry.fill",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                },
-                {
-                    featureType: "poi.attraction",
-                    elementType: "geometry.fill",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                },
-                {
-                    featureType: "poi.business",
-                    elementType: "geometry.fill",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                },
-                {
-                    featureType: "transit",
-                    elementType: "geometry.fill",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                },
-                {
-                    featureType: "transit.station",
-                    elementType: "geometry.fill",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                },
-                {
-                    featureType: "landscape",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                    
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry.fill",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                },
-                {
-                    featureType: "road.highway",
-                    elementType: "geometry.fill",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                }, 
-                {
-                    featureType: "water",
-                    elementType: "geometry",
-                    stylers: [
-                        { hue: main_color },
-                        { visibility: "on" }, 
-                        { lightness: brightness_value }, 
-                        { saturation: saturation_value }
-                    ]
-                }
-            ];
-                
-            // map options
-            var map_options = {
-
-                center: new google.maps.LatLng(latitude, longitude),
-                zoom: 14,
-                panControl: false,
-                zoomControl: false,
-                mapTypeControl: false,
-                streetViewControl: false,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                scrollwheel: false,
-                styles: style
-
-                };
-
-            // inizialize the map
-            var map = new google.maps.Map(document.getElementById('map-container'), map_options);
-
-            // add a custom marker to the map
-            var marker = new google.maps.Marker({
-
-                    position: new google.maps.LatLng(latitude, longitude),
-                    map: map,
-                    visible: true,
-                    icon: marker_url
-                    
-                });
-            
-            var zoomControlDiv = document.createElement('div');
-            var zoomControl = new clCustomZoomControl(zoomControlDiv, map);
-
-            // insert the zoom div on the top right of the map
-            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(zoomControlDiv);
-
-        } 
-
-    };
-
-
-   /* Initialize
-    * ------------------------------------------------------ */
+    /* Initialize
+     * ------------------------------------------------------ */
     (function clInit() {
 
         clPreloader();
@@ -575,10 +283,7 @@
         clSmoothScroll();
         clAlertBoxes();
         clAOS();
-        clAjaxChimp();
         clBackToTop();
-        clGoogleMap();
-
     })();
 
 })(jQuery);

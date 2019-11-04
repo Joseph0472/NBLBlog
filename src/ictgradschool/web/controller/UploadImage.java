@@ -1,4 +1,4 @@
-package ictgradschool.web.controller;
+package ictgradschool.web.deployments.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -38,7 +38,8 @@ public class UploadImage extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String fileRoute = "/assets/images/";
+        Integer userId = (Integer) request.getSession().getAttribute("UserIdBySession");
+        String fileRoute = "/assets/images/"+userId+"/";
         System.out.println("fileRoute");
         Map<Object, Object> responseData;
         System.out.println("map");

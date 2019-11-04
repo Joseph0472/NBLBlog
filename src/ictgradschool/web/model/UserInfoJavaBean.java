@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class UserInfoJavaBean implements Serializable {
-    private String fname = null;
-    private String lname= null;
-    private String emailAddress= null;
-    private String phoneNum= null;
-    private String dob= null;
-    private String country= null;
-    private String description= null;
-    private String avatarFileName= null;
+    private String fname = "";
+    private String lname= "";
+    private String emailAddress= "";
+    private String phoneNum= "";
+    private Date dob = null;
+    private String country= "";
+    private String description= "";
+    private String avatarFileName= "";
     private int userid = 0;
 
-    public UserInfoJavaBean(String fname, String lname, String emailAddress, String phoneNum, String dob, String country, String description, String avatarFileName, Integer userid) {
+    public UserInfoJavaBean(String fname, String lname, String emailAddress, String phoneNum, Date dob, String country, String description, String avatarFileName, Integer userid) {
         this.fname = fname;
         this.lname = lname;
         this.emailAddress = emailAddress;
@@ -65,11 +65,11 @@ public class UserInfoJavaBean implements Serializable {
         this.phoneNum = phoneNum;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

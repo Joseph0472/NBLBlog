@@ -8,6 +8,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ public class ChangeArticleServlet extends HttpServlet {
     private File uploadsFolder; // The folder where article images should be uploaded
     private File tempFolder; // The temp folder required by the file-upload logic
     private Article newArticle;
+    private Integer userId;
 
 
     /**
@@ -32,12 +34,14 @@ public class ChangeArticleServlet extends HttpServlet {
      * When deployed, they will be somewhere on the server, depending on the server's configuration.
      */
 
-    @Override
-    public void init() throws ServletException {
-        super.init();
 
-        // Get the upload folder, ensure it exists.
-        this.uploadsFolder = new File(getServletContext().getRealPath("/assets/images"));
+
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        userId = (Integer) req.getSession().getAttribute("UserIdBySession");
+// Get the upload folder, ensure it exists.
+        this.uploadsFolder = new File(getServletContext().getRealPath("/assets/images/"+userId));
         if (!uploadsFolder.exists()) {
             uploadsFolder.mkdirs();
         }
@@ -46,13 +50,6 @@ public class ChangeArticleServlet extends HttpServlet {
         if (!tempFolder.exists()) {
             tempFolder.mkdirs();
         }
-    }
-
-
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         // Set up file upload mechanism
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(tempFolder);
@@ -92,10 +89,10 @@ public class ChangeArticleServlet extends HttpServlet {
                     case "image":
                         // Save the uploaded image, and set the article's image fileName from the form field
                         if (!fi.getName().isEmpty()){
-                            File imageFile = new File(this.uploadsFolder, fi.getName());
-                            newArticle.setImageFilename(fi.getName());
-                            fi.write(imageFile);
-                            break;}else {
+                        File imageFile = new File(this.uploadsFolder, fi.getName());
+                        newArticle.setImageFilename(fi.getName());
+                        fi.write(imageFile);
+                        break;}else {
                             newArticle.setImageFilename(newArticle.getImageFilename());
                             break;
                         }
@@ -111,6 +108,7 @@ public class ChangeArticleServlet extends HttpServlet {
             try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
                 System.out.println(newArticle.toString());
                 ArticleDAO.updateArticle(newArticle, conn);
+                System.out.println("updateArticle execute");
                 //ArticleDAO.insertImage(newArticle, conn);
             }
 

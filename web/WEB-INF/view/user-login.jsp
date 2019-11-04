@@ -37,10 +37,12 @@
 							type: "post",
 							url: "check",
 							data: {"token": token},
-							success: (res, test, test2) => {
+							success: (res) => {
 								console.log(res);
-								console.log(test);
-								console.log(test2);
+								if (parseFloat(res)<=0.5){
+									console.log("robot");
+									window.location = './robot';
+								}
 							}
 
 						}
@@ -101,10 +103,10 @@
 	<a class="header__search-trigger" href="#0"></a>
 	<div class="header__search">
 
-		<form role="search" method="get" class="header__search-form" action="#">
+		<form method="get" class="header__search-form" action="/search-article">
 			<label>
 				<span class="hide-content">Search for:</span>
-				<input type="search" class="search-field" placeholder="Type Keywords" value="" name="s"
+				<input type="search" class="search-field" placeholder="Type Keywords" value="" name="search"
 					   title="Search for:" autocomplete="off">
 			</label>
 			<input type="submit" class="search-submit" value="Search">
@@ -117,19 +119,34 @@
 	<a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
 	<nav class="header__nav-wrap">
 
+		<h2 class="header__nav-heading h6">Navigate to</h2>
+
 		<ul class="header__nav">
 			<li class="current"><a href="/articles" title="">Home</a></li>
 			<li><a href="/newArticle" title="">Compose</a></li>
-			<li><a href="/startpage" title="">Start</a></li>
 			<li class="has-children">
-				<a href="#0" title="">Account</a>
+				<a href="/articles" title="">Articles</a>
 				<ul class="sub-menu">
-					<li><a href="/updateInfo">UPDATE ACCOUNT</a></li>
-					<li><a href="/articlesByUsers">YOUR ARTICLES</a></li>
+					<li><a href="/articles">All articles</a></li>
+					<li><a href="/articlesByUsers">Your articles</a></li>
 				</ul>
 			</li>
-			<li><a href="/articles" title="">All Articles</a></li>
-			<li><a href="/user-login" title="">Log In</a></li>
+			<li><a href="/updateInfo" title="">Profile</a></li>
+			<li class="has-children">
+				<a href="#0" title="">Gallery</a>
+				<ul class="sub-menu">
+					<li><a href="/user_gallery">All</a></li>
+					<li><a href="/personal_gallery">Your gallery</a></li>
+				</ul>
+			</li>
+			<li class="has-children">
+				<a href="/user-login" title="">account</a>
+				<ul class="sub-menu">
+					<li><a href="/user-login">Log in</a></li>
+					<li><a href="#0">Log out</a></li>
+					<li><a href="/user-signup">Sign up</a></li>
+				</ul>
+			</li>
 		</ul> <!-- end header__nav -->
 
 	</nav> <!-- end header__nav-wrap -->
@@ -168,6 +185,17 @@
 		</div> <!-- s-content__main -->
 	</div> <!-- end row -->
 </section> <!-- end s-content -->
+
+<!-- s-footer
+    ================================================== -->
+<footer class="s-footer">
+	<div>
+		<p style="text-align: center"> This website is made with <i class="fa fa-heart" aria-hidden="true"></i> by NeverBeLate* team </p>
+	</div>
+	<div class="go-top">
+		<a class="smoothscroll" title="Back to Top" href="#top"></a>
+	</div>
+</footer> <!-- end s-footer -->
 
 <!-- Java Script
 ================================================== -->
