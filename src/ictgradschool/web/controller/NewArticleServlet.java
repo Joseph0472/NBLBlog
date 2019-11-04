@@ -3,6 +3,7 @@ package ictgradschool.web.controller;
 import ictgradschool.util.DBConnectionUtils;
 import ictgradschool.web.model.Article;
 import ictgradschool.web.model.ArticleDAO;
+import ictgradschool.web.model.UserDAO;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -25,6 +26,7 @@ public class NewArticleServlet extends HttpServlet {
 
     private File uploadsFolder; // The folder where article images should be uploaded
     private File tempFolder; // The temp folder required by the file-upload logic
+    private Integer userId;
 
     /**
      * Initializes the uploadsFolder and tempFolder, and makes sure they exist.
@@ -33,12 +35,18 @@ public class NewArticleServlet extends HttpServlet {
      * <p>
      * When deployed, they will be somewhere on the server, depending on the server's configuration.
      */
-    @Override
-    public void init() throws ServletException {
-        super.init();
 
-        // Get the upload folder, ensure it exists.
-        this.uploadsFolder = new File(getServletContext().getRealPath("/assets/images"));
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("WEB-INF/view/new-article-view.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        userId = (Integer) req.getSession().getAttribute("UserIdBySession");
+// Get the upload folder, ensure it exists.
+        this.uploadsFolder = new File(getServletContext().getRealPath("/assets/images/"+userId));
         if (!uploadsFolder.exists()) {
             uploadsFolder.mkdirs();
         }
@@ -47,79 +55,68 @@ public class NewArticleServlet extends HttpServlet {
         if (!tempFolder.exists()) {
             tempFolder.mkdirs();
         }
-    }
+        // Set up file upload mechanism
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        factory.setRepository(tempFolder);
+        ServletFileUpload upload = new ServletFileUpload(factory);
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Somewhere to put the information
+        Article newArticle = new Article();
 
-        req.getRequestDispatcher("WEB-INF/view/new-article-view.jsp").forward(req, resp);
-    }
+        System.out.println(userId);
+        newArticle.setUserId(userId);
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer userId = (Integer) req.getSession().getAttribute("UserIdBySession");
-        if (userId != null){
-            // Set up file upload mechanism
-            DiskFileItemFactory factory = new DiskFileItemFactory();
-            factory.setRepository(tempFolder);
-            ServletFileUpload upload = new ServletFileUpload(factory);
+        try {
 
-            // Somewhere to put the information
-            Article newArticle = new Article();
+            // Parse the form (works differently since we're expecting a file, amongst other form fields).
+            List<FileItem> fileItems = upload.parseRequest(req);
+            for (FileItem fi : fileItems) {
 
-            System.out.println(userId);
-            newArticle.setUserId(userId);
+                switch (fi.getFieldName()) {
 
-            try {
+                    case "title":
+                        // Set the article's title from the form field
+                        newArticle.setTitle(fi.getString());
+                        break;
 
-                // Parse the form (works differently since we're expecting a file, amongst other form fields).
-                List<FileItem> fileItems = upload.parseRequest(req);
-                for (FileItem fi : fileItems) {
+                    case "content":
+                        // Set the article's content from the form field
+                        newArticle.setContent(fi.getString());
+                        break;
 
-                    switch (fi.getFieldName()) {
-
-                        case "title":
-                            // Set the article's title from the form field
-                            newArticle.setTitle(fi.getString());
+                    case "image":
+                        // Save the uploaded image, and set the article's image fileName from the form field
+                        if (!fi.getName().isEmpty()){
+                        File imageFile = new File(this.uploadsFolder, fi.getName());
+                        newArticle.setImageFilename(fi.getName());
+                        fi.write(imageFile);
+                        break;}else {
+                            newArticle.setImageFilename(null);
                             break;
+                        }
 
-                        case "content":
-                            // Set the article's content from the form field
-                            newArticle.setContent(fi.getString());
-                            break;
+                    case "time":
+                        String date = fi.getString();
+                        newArticle.setDate(java.sql.Date.valueOf(date));
+                        break;
 
-                        case "image":
-                            // Save the uploaded image, and set the article's image fileName from the form field
-                            if (!fi.getName().isEmpty()){
-                                File imageFile = new File(this.uploadsFolder, fi.getName());
-                                newArticle.setImageFilename(fi.getName());
-                                fi.write(imageFile);
-                                break;}else {
-                                newArticle.setImageFilename(null);
-                                break;
-                            }
-
-                        case "time":
-                            String date = fi.getString();
-                            newArticle.setDate(java.sql.Date.valueOf(date));
-                            break;
-
-                    }
                 }
+            }
 
-                // Save the article to the DB.
-                try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
-                    ArticleDAO.insertArticle(newArticle, conn);
-                    //ArticleDAO.insertImage(newArticle, conn);
-                }
-
-            } catch (Exception e) {
-                throw new ServletException(e);
-            }}
-        if (userId == null){
-            req.getRequestDispatcher("WEB-INF/view/userlogin.jsp").forward(req, resp);
+            // Save the article to the DB.
+            try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
+                newArticle.setUsername(UserDAO.getUsernameById(userId, conn));
+                ArticleDAO.insertArticle(newArticle, conn);
+                //ArticleDAO.insertImage(newArticle, conn);
+            }
+            if (userId == null){
+                req.getRequestDispatcher("WEB-INF/view/user-login.jsp").forward(req, resp);
+            }
+            // Redirect to the main articles page.
+            resp.sendRedirect("./articles");
+        } catch (Exception e) {
+            throw new ServletException(e);
         }
-        // Redirect to the main articles page.
-        resp.sendRedirect("./articles");
+
     }
 }

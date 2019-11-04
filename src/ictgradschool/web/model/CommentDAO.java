@@ -5,14 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDAO {
-    public static List<Comment> getAllComments(Connection conn) throws SQLException {
-        List<Comment> comments = new ArrayList<>();
+    /*
+    *children comment dao
+    *
+    *
+    * */
+
+    public static List<ChildrenComment> getAllChildrenComment(Connection conn) throws SQLException {
+        List<ChildrenComment> comments = new ArrayList<>();
 
         try (Statement stmt = conn.createStatement()) {
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM final01_comment")) {
+            try (ResultSet rs = stmt.executeQuery("SELECT * FROM fp_childComment")) {
                 while (rs.next()) {
-                    Comment comment = new Comment(rs.getInt(1), rs.getString(2),
-                            rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+                    ChildrenComment comment = new ChildrenComment(rs.getInt(1), rs.getString(2),
+                            rs.getInt(3), rs.getInt(4),rs.getInt(5),rs.getDate(6), rs.getString(7));
                     comments.add(comment);
                 }
             }
@@ -20,14 +26,14 @@ public class CommentDAO {
         return comments;
     }
 
-    public static List<Comment> getCommentByArticleId(int articleId, Connection conn) throws SQLException {
-        try (PreparedStatement st = conn.prepareStatement("SELECT * FROM final01_comment WHERE article_id = ?")) {
-            List<Comment> comments = new ArrayList<>();
+    public static List<ChildrenComment> getChildCommentByArticleId(int articleId, Connection conn) throws SQLException {
+        try (PreparedStatement st = conn.prepareStatement("SELECT * FROM fp_childComment WHERE article_id = ?")) {
+            List<ChildrenComment> comments = new ArrayList<>();
             st.setInt(1, articleId);
             try (ResultSet rs = st.executeQuery()) {
                 while (rs.next()) {
-                    Comment comment = new Comment(rs.getInt(1), rs.getString(2),
-                            rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+                    ChildrenComment comment = new ChildrenComment(rs.getInt(1), rs.getString(2),
+                            rs.getInt(3), rs.getInt(4), rs.getInt(5),rs.getDate(6), rs.getString(7));
                     comments.add(comment);
                 }
             }
@@ -36,71 +42,52 @@ public class CommentDAO {
         }
     }
 
-    public static boolean insertComment(Comment newComment, Connection conn) throws SQLException {
+    public static void insertChildrenComment(ChildrenComment newComment, Connection conn) throws SQLException {
 
-        try (PreparedStatement st = conn.prepareStatement("INSERT INTO final01_comment " +
-                "(content, article_id, user_id, parent_id) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement st = conn.prepareStatement("INSERT INTO fp_childComment " +
+                        "(content, article_id, user_id,parent_id,date, username) VALUES (?, ?, ?,?,?, ?) ",
+                Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, newComment.getContent());
             st.setInt(2, newComment.getArticleId());
             st.setInt(3, newComment.getUserId());
-            st.setInt(4, newComment.getParentId());
+            st.setInt(4,newComment.getParentId());
+            st.setDate(5, newComment.getDate());
+            st.setString(6, newComment.getUsername());
+            st.executeUpdate();
 
-            int success = st.executeUpdate();
-
-            if (success == 0) {
-                return false;
-            }
-
-            try (ResultSet rs = st.getGeneratedKeys()) {
-                rs.next();
-                newComment.setId(rs.getInt(1));
-                return true;
-            }
         }
     }
 
-    public static List<Comment> getNestedComment (int commentId, Connection conn) throws SQLException {
-        try (PreparedStatement st = conn.prepareStatement("SELECT * FROM final01_comment WHERE parent_id = ?")) {
-            List<Comment> nestedComments = new ArrayList<>();
-            st.setInt(1, commentId);
-            try (ResultSet rs = st.executeQuery()) {
-                while (rs.next()) {
-                    Comment comment = new Comment(rs.getInt(1), rs.getString(2),
-                            rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
-                    nestedComments.add(comment);
-                }
-            }
-            return nestedComments;
-        }
-    }
-
-    public static Comment getCommentByCommentId (int commentId, Connection conn) throws SQLException {
-        try (PreparedStatement st = conn.prepareStatement("SELECT * FROM final01_comment WHERE comment_id = ?")) {
-
-            st.setInt(1, commentId);
-            try (ResultSet rs = st.executeQuery()) {
-                if (rs.next()) {
-                    Comment comment = new Comment(rs.getInt(1), rs.getString(2),
-                            rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
-                    return comment;
-                } else {
-                    return null;
-                }
-            }
-        }
-    }
-
-    public static Comment updateNestedCommentNumber(int commentId, Connection conn) throws SQLException {
+    public static void deleteChildrenComment(int id, Connection conn) throws SQLException {
 
         try (PreparedStatement stmt = conn.prepareStatement(
-                "update final01_comment set child_number = ? where comment_id = ?")){
-            stmt.setInt(1, CommentDAO.getCommentByCommentId(commentId, conn).getChildNumber() + 1);
-            stmt.setInt(2, commentId);
+                "DELETE FROM fp_childComment WHERE id = ?")) {
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+        }
+
+    }
+    /*
+     * parent comment dao
+     *
+     *
+     * */
+    public static ParentComment getParentCommentById(int id, Connection conn) throws SQLException {
+
+        try (PreparedStatement stmt = conn.prepareStatement(
+                "SELECT * FROM fp_parentComment WHERE id = ?")) {
+
+            stmt.setInt(1, id);
 
             try (ResultSet rs = stmt.executeQuery()) {
 
                 if (rs.next()) {
-                    return getCommentFromResultSet(rs);
+
+                    return new ParentComment(rs.getInt(1), rs.getString(2),
+                            rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getString(6));
+
                 } else {
                     return null;
                 }
@@ -110,9 +97,64 @@ public class CommentDAO {
         }
 
     }
+    public static List<ParentComment> getAllParentComments(Connection conn) throws SQLException {
+        List<ParentComment> comments = new ArrayList<>();
 
-    private static Comment getCommentFromResultSet(ResultSet rs) throws SQLException {
-        return new Comment(rs.getInt(1), rs.getString(2),
-                rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+        try (Statement stmt = conn.createStatement()) {
+            try (ResultSet rs = stmt.executeQuery("SELECT * FROM fp_parentComment")) {
+                while (rs.next()) {
+                    ParentComment comment = new ParentComment(rs.getInt(1), rs.getString(2),
+                            rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getString(6));
+                    comments.add(comment);
+                }
+            }
+        }
+        return comments;
     }
+
+    public static List<ParentComment> getParentCommentByArticleId(int articleId, Connection conn) throws SQLException {
+        try (PreparedStatement st = conn.prepareStatement("SELECT * FROM fp_parentComment WHERE article_id = ?")) {
+            List<ParentComment> comments = new ArrayList<>();
+            st.setInt(1, articleId);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    ParentComment comment = new ParentComment(rs.getInt(1), rs.getString(2),
+                            rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getString(6));
+                    comments.add(comment);
+                }
+            }
+            System.out.println("getParentCommentByArticleId execute");
+            return comments;
+
+        }
+    }
+
+    public static void insertParentComment(ParentComment newComment, Connection conn) throws SQLException {
+
+        try (PreparedStatement st = conn.prepareStatement("INSERT INTO fp_parentComment " +
+                        "(content, article_id, user_id,date, username) VALUES (?, ?, ?,?, ?) ",
+                Statement.RETURN_GENERATED_KEYS)) {
+            st.setString(1, newComment.getContent());
+            st.setInt(2, newComment.getArticleId());
+            st.setInt(3, newComment.getUserId());
+            st.setDate(4, newComment.getDate());
+            st.setString(5, newComment.getUsername());
+            st.executeUpdate();
+
+        }
+    }
+
+    public static void deleteParentrenComment(int id, Connection conn) throws SQLException {
+
+        try (PreparedStatement stmt = conn.prepareStatement(
+                "DELETE FROM fp_parentComment WHERE id = ?")) {
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+        }
+
+    }
+
 }
+

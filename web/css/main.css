@@ -1,8 +1,4 @@
-/* =================================================================== 
- *
- *  Wordsmith v1.0 Main Stylesheet
- *  07-06-2018
- *  ------------------------------------------------------------------
+/* ===================================================================
  *
  *  TOC:
  *  # base style overrides
@@ -76,7 +72,7 @@ html, body {
 }
 
 body {
-  background: #111860;
+  background: #363636;
   font-family: "Nunito Sans", sans-serif;
   font-size: 1.8rem;
   font-style: normal;
@@ -428,7 +424,7 @@ ul.disc li::before {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #111860;
+  background: #2b90d9;
   position: absolute;
   left: -17px;
   top: 11px;
@@ -437,7 +433,7 @@ ul.disc li::before {
 
 dt {
   margin: 0;
-  color: #111860;
+  color: #2b90d9;
 }
 
 dd {
@@ -921,7 +917,7 @@ label > input[type="radio"] {
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus
 input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover
 textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus {
-  -webkit-text-fill-color: #111860;
+  -webkit-text-fill-color: #2b90d9;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -979,8 +975,8 @@ button.btn--primary,
 input[type="submit"].btn--primary,
 input[type="reset"].btn--primary,
 input[type="button"].btn--primary {
-  background: #111860;
-  border-color: #111860;
+  background: #2b90d9;
+  border-color: #2b90d9;
   color: #FFFFFF;
 }
 
@@ -1251,7 +1247,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .stats-tabs li a:hover {
-  color: #111860;
+  color: #2b90d9;
 }
 
 .stats-tabs li a em {
@@ -1307,7 +1303,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .pgn .current, .pgn .current:hover {
-  background-color: #111860;
+  background-color: #2b90d9;
   color: white;
 }
 
@@ -1345,12 +1341,12 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .pgn__prev {
-  background-image: url("../images/icons/icon-arrow-left.svg");
+  background-image: url("../assets/images/icons/icon-arrow-left.jpg");
   left: 0;
 }
 
 .pgn__next {
-  background-image: url("../images/icons/icon-arrow-right.svg");
+  background-image: url("../assets/images/icons/icon-arrow-right.jpg");
   right: 0;
 }
 
@@ -1826,7 +1822,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .header__search-trigger {
   height: 18px;
   min-width: 18px;
-  background-image: url(../images/icons/icon-search.svg);
+  background-image: url(../assets/images/icons/icon-search.jpg);
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
@@ -2038,7 +2034,7 @@ body.search-is-visible {
   font-weight: 800;
   font-size: 1.5rem;
   line-height: 1.2;
-  color: #111860;
+  color: #2b90d9;
   text-transform: uppercase;
   letter-spacing: .3rem;
   margin-top: 8.4rem;
@@ -2331,11 +2327,11 @@ body.search-is-visible {
   }
 
   .header__nav li:hover > a, .header__nav li:focus > a {
-    color: #111860;
+    color: #2b90d9;
   }
 
   .header__nav li.current > a {
-    color: #111860;
+    color: #2b90d9;
     font-weight: 700;
   }
 
@@ -2345,7 +2341,7 @@ body.search-is-visible {
   }
 
   .header__nav li ul li a:hover, .header__nav li ul li a:focus {
-    color: #111860;
+    color: #2b90d9;
   }
 
   body.nav-wrap-is-visible {
@@ -2514,12 +2510,12 @@ body.search-is-visible {
 
 .featured-slider .slick-prev {
   left: -120px;
-  background-image: url(../images/icons/icon-arrow-left.svg);
+  background-image: url(../assets/images/icons/icon-arrow-left.jpg);
 }
 
 .featured-slider .slick-next {
   right: -120px;
-  background-image: url(../images/icons/icon-arrow-right.svg);
+  background-image: url(../assets/images/icons/icon-arrow-right.jpg);
 }
 
 .featured__slide {
@@ -3001,7 +2997,7 @@ body.search-is-visible {
 }
 
 .s-extra a:hover, .s-extra a:focus {
-  color: #111860;
+  color: #2b90d9;
 }
 
 .s-extra h3, .s-extra h5 {
@@ -3032,7 +3028,7 @@ body.search-is-visible {
 .s-extra h3::after {
   content: "";
   display: block;
-  background-color: #111860;
+  background-color: #2b90d9;
   height: 2px;
   width: 90px;
   position: absolute;
@@ -3154,8 +3150,8 @@ body.search-is-visible {
  *
  * ------------------------------------------------------------------- */
 footer {
-  padding-top: 10.2rem;
-  padding-bottom: 10.2rem;
+  padding-top: 0.77rem;
+  padding-bottom: 0rem;
   font-size: 1.5rem;
   line-height: 2;
   color: rgba(255, 255, 255, 0.5);
@@ -3219,7 +3215,7 @@ footer [class*="s-footer__"] > .row [class*="col-"]:last-child {
   height: 5.4rem;
   font-size: 1.5rem;
   padding: 1.2rem 100px 1.2rem 60px;
-  background: url(../images/icons/icon-mail.svg) 20px center no-repeat, rgba(0, 0, 0, 0.25);
+  background: url(../assets/images/icons/icon-mail.jpg) 20px center no-repeat, rgba(0, 0, 0, 0.25);
   background-size: 24px 16px, auto;
   margin-bottom: 1.8rem;
   color: white;
@@ -3364,8 +3360,8 @@ footer [class*="s-footer__"] > .row [class*="col-"]:last-child {
   width: 6rem;
   line-height: 6rem;
   text-align: center;
-  background-image: url(../images/icons/icon-arrow-up.svg);
-  background-color: #000000;
+  background-image: url(../assets/images/icons/icon-arrow-up.jpg);
+  background-color: #f08227;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 7px 16px;
@@ -3741,7 +3737,7 @@ footer [class*="s-footer__"] > .row [class*="col-"]:last-child {
 }
 
 .s-content__nav a:hover, .s-content__nav a:focus {
-  color: #111860;
+  color: #2b90d9;
 }
 
 .s-content__prev, .s-content__next {
@@ -4224,17 +4220,17 @@ footer [class*="s-footer__"] > .row [class*="col-"]:last-child {
 }
 
 #map-wrap #map-zoom-in {
-  background-image: url(../images/icons/icon-plus.svg);
+  background-image: url(../assets/images/icons/icon-plus.jpg);
   background-size: 10px 10px;
 }
 
 #map-wrap #map-zoom-out {
-  background-image: url(../images/icons/icon-minus.svg);
+  background-image: url(../assets/images/icons/icon-minus.jpg);
   background-size: 10px 10px;
 }
 
 #map-wrap #map-zoom-in:hover, #map-wrap #map-zoom-out:hover {
-  background-color: #111860;
+  background-color: #2b90d9;
 }
 
 /* contact form

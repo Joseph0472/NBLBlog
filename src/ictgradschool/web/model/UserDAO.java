@@ -23,7 +23,7 @@ public class UserDAO {
     }
 
     public static int getUserIdByUserName(String username, Connection conn) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement("select id from fp_userLogin where username = ?")){
+        try (PreparedStatement stmt = conn.prepareStatement("select id from fp_userLogin where username LIKE ?")){
             stmt.setString(1, username);
             try (ResultSet rs = stmt.executeQuery()){
                 if (rs.next()) {
@@ -95,7 +95,7 @@ public class UserDAO {
             stmt.setString(2, user.getLname());
             stmt.setString(3, user.getEmailAddress());
             stmt.setString(4, user.getPhoneNum());
-            stmt.setString(5, user.getDob());
+            stmt.setDate(5, user.getDob());
             stmt.setString(6, user.getCountry());
             stmt.setString(7, user.getDescription());
             stmt.setString(8, user.getAvatarFileName());
@@ -109,6 +109,101 @@ public class UserDAO {
 
             return true;
 
+        }
+    }
+
+    // add new methods by SHI
+    public static String getUsernameById(Integer id, Connection conn) throws SQLException {
+        try (PreparedStatement stmt = conn.prepareStatement("select * from fp_userLogin where id = ?")){
+            stmt.setInt(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()){
+                if (rs.next()) {
+                    return getUsernameFromResultSet(rs);
+                }else {
+                    return null;
+                }
+            }
+        }
+    }
+
+    private static String getUsernameFromResultSet(ResultSet rs) throws SQLException {
+        return rs.getString("username");
+    }
+
+    public static UserInfoJavaBean getUserInfoById (int userid, Connection conn) {
+        try (PreparedStatement stmt = conn.prepareStatement("select * from fp_userInfo where userid = ?")){
+
+            stmt.setInt(1, userid);
+            try (ResultSet rs = stmt.executeQuery()){
+                if (rs.next()) {
+                    return getUserInfoByIdFromResulrSet(rs);
+                }else {
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static UserInfoJavaBean getUserInfoByIdFromResulrSet(ResultSet rs) throws SQLException {
+        return new UserInfoJavaBean(
+                rs.getString(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4),
+                rs.getDate(5),
+                rs.getString(6),
+                rs.getString(7),
+                rs.getString(8),
+                rs.getInt(9)
+        );
+    }
+    public static boolean updateUserAvatarById(int userId, String avatarFileName, Connection conn) {
+        try (PreparedStatement stmt = conn.prepareStatement("update fp_userInfo set avatarFilename = ? where userid = ?")) {
+            stmt.setString(1, avatarFileName);
+            stmt.setInt(2, userId);
+
+            int success = stmt.executeUpdate();
+
+            if (success == 0) {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public static int getUserIdInUserInfo(UserInfoJavaBean user, Connection conn) {
+        try (PreparedStatement stmt = conn.prepareStatement("select userid from fp_userInfo where userid = ?")){
+            stmt.setInt(1, user.getUserid());
+            try (ResultSet rs = stmt.executeQuery()){
+                if (rs.next()) {
+                    return getUserIdInUserInfoResultSet(rs);
+                }else {
+                    return -1;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    private static int getUserIdInUserInfoResultSet(ResultSet rs) throws SQLException {
+        return rs.getInt(1);
+    }
+
+    public static void deleteFormerUserInfo(int userid, Connection conn) {
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM fp_userInfo WHERE userid = ?")){
+            stmt.setInt(1, userid);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -93,6 +93,14 @@
         <servlet-name>logoff</servlet-name>
         <url-pattern>/tologoff</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>changeiconlib</servlet-name>
+        <servlet-class>ictgradschool.web.controller.UpdateAvatarFromLibServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changeiconlib</servlet-name>
+        <url-pattern>/changeiconlib</url-pattern>
+    </servlet-mapping>
 
 
     <!--=============================== Joseph part end ===============================-->
@@ -183,36 +191,36 @@
 
     <!--============================= Lucas part end =================================================-->
 
-    <servlet>
-        <servlet-name>NewComment</servlet-name>
-        <servlet-class>ictgradschool.web.controller.NewCommentServlet</servlet-class>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>NewComment</servlet-name>-->
+<!--        <servlet-class>ictgradschool.web.controller.NewCommentServlet</servlet-class>-->
+<!--    </servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>NewComment</servlet-name>
-        <url-pattern>/newcomment</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>NewComment</servlet-name>-->
+<!--        <url-pattern>/newcomment</url-pattern>-->
+<!--    </servlet-mapping>-->
 
-    <servlet>
-        <servlet-name>NewNestedComment</servlet-name>
-        <servlet-class>ictgradschool.web.controller.NewNestedCommentServlet</servlet-class>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>NewNestedComment</servlet-name>-->
+<!--        <servlet-class>ictgradschool.web.controller.NewNestedCommentServlet</servlet-class>-->
+<!--    </servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>NewNestedComment</servlet-name>
-        <url-pattern>/new-nested-comment</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>NewNestedComment</servlet-name>-->
+<!--        <url-pattern>/new-nested-comment</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 
-    <servlet>
-        <servlet-name>DisplayNestedComment</servlet-name>
-        <servlet-class>ictgradschool.web.controller.DisplayNestedCommentServlet</servlet-class>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>DisplayNestedComment</servlet-name>-->
+<!--        <servlet-class>ictgradschool.web.controller.DisplayNestedCommentServlet</servlet-class>-->
+<!--    </servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>DisplayNestedComment</servlet-name>
-        <url-pattern>/display-nested-comments</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>DisplayNestedComment</servlet-name>-->
+<!--        <url-pattern>/display-nested-comments</url-pattern>-->
+<!--    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>CheckUsername</servlet-name>

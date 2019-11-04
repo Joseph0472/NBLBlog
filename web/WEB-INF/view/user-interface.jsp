@@ -17,8 +17,10 @@
     <jsp:include page="/WEB-INF/view/nav.jsp"/>
 </header>
 <h1> ~~ Welcome to the user interface page ~~ </h1>
-<p> Your true name is ${newAccountInfo.fname}   ${newAccountInfo.lname} </p>
-<p> Your avatar is  <img src="./assets/images/avatars/${newAccountInfo.avatarFileName}"></p>
+<p> Your true name is ${UserInfo.fname}   ${UserInfo.lname} </p>
+<p> Your avatar is  <img src="./assets/avatars/${UserInfo.avatarFileName}" height=200 width=200></p>
+<%--<p> Your avatar by session version is  <img src="./assets/avatars/${avatarFileNameBySession}" height=200 width=200></p>--%>
+
 <p></p>
 <p></p>
 <p></p>

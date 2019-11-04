@@ -12,6 +12,27 @@ public class Article {
     private Integer userId;
     private Date date;
     private String userFullName;
+    private String username;
+
+
+    public Article(Integer id, String title, String content, String imageFilename, Integer userId, Date date, String username) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.imageFilename = imageFilename;
+        this.userId = userId;
+        this.date = date;
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
     public String getUserFullName() {
         return userFullName;

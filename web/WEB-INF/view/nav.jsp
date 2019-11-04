@@ -13,19 +13,40 @@
 <a href="/startpage"> Start </a>      |
 <a href="/user-login"> Login </a>      |
 <a href="/updateInfo"> UpdateUserInfo</a>      |
-<a href="/userInterface"> CheckUserInfo</a>      |
+<a href="/showInfo?id=${UserIdBySession}"> CheckUserInfo</a>      |
 <a href="/articles"> Articles </a>      |
 <a href="/articlesByUsers"> Personal articles </a>      |
-<a onclick="out()"> log off </a>
-<p> hello: ${UserNameBySession}        your id is: ${UserIdBySession}</p>
+<a onclick="logoff()"> log off </a>
+<p> hello: ${UserNameBySession}        your id is: ${UserIdBySession}   login status: ${LoginStatusBySession}</p>
 
 <script type="text/javascript">
-    function out(){
+    function logoff(){
         var result = confirm("Are you sure to log off？");
+
         if(result){
             location.href="/tologoff";
         }
+        setCookie("username", ' ', -1);
+        //
+        // var getCookie = function (name) {
+        //     var arr;
+        //     var reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        //     if (arr = document.cookie.match(reg))
+        //         return unescape(arr[2]);
+        //     else
+        //         return null;
+        // };
     }
+
+    var setCookie = function (name, value, day) {
+        if(day !== 0){
+            var expires = day * 24 * 60 * 60 * 1000;
+            var date = new Date(+new Date()+expires);
+            document.cookie = name + "=" + escape(value) + ";expires=" + date.toUTCString();
+        }else{
+            document.cookie = name + "=" + escape(value);
+        }
+    };
 </script>
 
 <%--TODO:use js to show a username or nothing basic on the session content--%>

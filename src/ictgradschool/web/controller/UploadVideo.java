@@ -36,8 +36,8 @@ public class UploadVideo extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		String fileRoute = "/assets/images/";
+		Integer userId = (Integer) request.getSession().getAttribute("UserIdBySession");
+		String fileRoute = "/assets/video/"+userId+"/";
 
 		Map<Object, Object> responseData;
 		try {
@@ -53,7 +53,7 @@ public class UploadVideo extends HttpServlet {
         synchronized (responseData) {
             try
             {
-                responseData.wait(10000);
+                responseData.wait(5000);
                 String jsonResponseData = new Gson().toJson(responseData);
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
