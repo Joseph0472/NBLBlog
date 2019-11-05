@@ -15,6 +15,9 @@ import java.sql.SQLException;
 public class ShowAccountInfoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Integer userIdBySession = (Integer)req.getSession().getAttribute("UserIdBySession");
+        if (userIdBySession != null){
         int userId = Integer.parseInt(req.getParameter("id"));
         UserInfoJavaBean userinfo = new UserInfoJavaBean();
 
@@ -28,5 +31,9 @@ public class ShowAccountInfoServlet extends HttpServlet {
         }
         req.setAttribute("UserInfo", userinfo);
         req.getRequestDispatcher("WEB-INF/view/user-interface.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("WEB-INF/view/user-login.jsp").forward(req,resp);
+        }
+
     }
 }
