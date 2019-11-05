@@ -42,10 +42,16 @@ public class NewChildCommentServlet extends HttpServlet {
             Date current_date = new Date(new java.util.Date().getTime());
             System.out.println(current_date);
 
+                  /*
+            get avatar by SHI 1104
+             */
+            String avatarFileName = UserDAO.getUserAvatarById(userId, conn);
+
             // add username into newComment by SHI
             String username = UserDAO.getUsernameById(userId, conn);
+
             ChildrenComment newComment = new ChildrenComment(content, articleId, userId, Integer.parseInt(p_comments_id),
-                    current_date, username);
+                    current_date, username, avatarFileName);
             CommentDAO.insertChildrenComment(newComment, conn);
             /*
         display the parent comment

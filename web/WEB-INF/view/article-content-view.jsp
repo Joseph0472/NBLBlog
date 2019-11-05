@@ -133,7 +133,7 @@
             <div class="entry__post-thumb">
                 <%--${article.imageFilename}--%>
                 <c:if test="${article.imageFilename != null}">
-                    <img src="../assets/images/${article.imageFilename}"
+                    <img style="display: block; margin: 0 auto; " src="../assets/images/${article.imageFilename}"
                          srcset="../assets/images/${article.imageFilename} 2000w,
                              ../assets/images/${article.imageFilename} 1000w
                              ../assets/images/${article.imageFilename} 500w"
@@ -143,12 +143,12 @@
         </div>
 
         <div class="col-full entry__main">
-
             <p>${article.content}</p>
-
         </div><!-- s-entry__main -->
 
     </article><!-- end entry/article -->
+    <!--
+    ===============================================================================================================-->
 
     <div class="comments-wrap">
 
@@ -159,73 +159,90 @@
 
                 <!-- START commentlist -->
                 <ol class="commentlist">
-                    <ul class="children">
-
-                        <li class="depth-2 comment">
-                    <c:forEach var="p_comments" items="${p_comments}">
-
+<c:forEach var="p_comments" items="${p_comments}">
+                    <li class="thread-alt depth-1 comment">
 
                         <div class="comment__avatar">
-                            <img class="img-responsive user-photo"
-                                 src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" width="50" height="50">
+                            <img class="avatar" src="./assets/avatars/${p_comments.avatarFilename}" alt="" width="50" height="50">
                         </div>
 
                         <div class="comment__content">
 
                             <div class="comment__info">
-                                <div class="comment__author">UserId:${p_comments.userId}</div>
+                                <div class="comment__author">UserName:${p_comments.username}</div>
+
                                 <div class="comment__meta">
                                     <div class="comment__time">Date:${p_comments.date}</div>
-                                    <form action="./replyServlet" method="post" class="reply_form">
-                                        <button class="btn btn--stroke" type="submit" name="p_comments_id" value="${p_comments.id}">reply</button>
-                                    </form>
+                                    <div class="comment__reply">
+                                        <div style="display: inline-block">
+                                            <a href="./replyServlet?p_comments_id=${p_comments.id}"
+                                               class="item-entry__thumb-link">Reply</a>
+                                        </div>
+                                        <div style="display: inline-block">
+                                            <c:if test="${p_comments.userId == UserIdBySession || article.userId ==
+                                        UserIdBySession}">
+                                                <a href="./deleteCommentServlet?p_comments_id=${p_comments.id}"
+                                                   class="item-entry__thumb-link">Delete</a>
+                                            </c:if>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="comment__text">
                                 <p>${p_comments.content}</p>
                             </div>
+
                         </div>
-                        <ul class="children">
+    <c:forEach var="c_comments" items="${c_comments}">
+        <c:if test="${c_comments.parentId == p_comments.id}">
+                        <ul class="children" style="margin-left: 70px">
 
-                            <li class="depth-3 comment">
+                            <li class="depth-2 comment">
 
-                        <c:forEach var="c_comments" items="${c_comments}">
-                            <c:if test="${c_comments.parentId == p_comments.id}">
+                                <div class="comment__avatar" style=" left: 50px">
+                                    <img class="avatar" src="./assets/avatars/${c_comments.avatarFilename}" alt="" width="50" height="50">
+                                </div>
 
+                                <div class="comment__content">
 
-                                        <div class="comment__avatar">
-                                            <img class="avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                                                 width="50"
-                                                 height="50" alt="">
+                                    <div class="comment__info">
+                                        <div class="comment__author">UserName:${c_comments.username}</div>
+
+                                        <div class="comment__meta">
+                                            <div class="comment__time">Date:${c_comments.date}</div>
+                                            <c:if test="${c_comments.userId == UserIdBySession || article.userId == UserIdBySession}">
+                                                <a href="./deleteCommentServlet?c_comments_id=${c_comments.id}"
+                                                   class="item-entry__thumb-link">Delete</a>
+                                            </c:if>
                                         </div>
+                                    </div>
 
-                                        <div class="comment__content">
+                                    <div class="comment__text">
+                                        <p>${c_comments.content}</p>
+                                    </div>
 
-                                            <div class="comment__info">
-                                                <div class="comment__author">UserId:${c_comments.userId}</div>
+                                </div>
 
-                                                <div class="comment__meta">
-                                                    <div class="comment__time">Date:${c_comments.date}</div>
-                                                </div>
-                                            </div>
+                            </li>
 
-                                            <div class="comment__text">
-                                                <p>${c_comments.content}</p>
-                                            </div>
-                                        </div>
-                            </c:if>
-                        </c:forEach>
-                                    </li>
-                                </ul>
-                                </li>
+                        </ul>
+        </c:if>
+    </c:forEach>
 
-                    </c:forEach>
+                    </li> <!-- end comment level 1 -->
+    <hr>
+</c:forEach>
+
                 </ol>
                 <!-- END commentlist -->
+
             </div> <!-- end col-full -->
         </div> <!-- end comments -->
 
+
+    <!--
+    ===============================================================================================================-->
         <div class="row comment-respond">
 
             <!-- START respond -->

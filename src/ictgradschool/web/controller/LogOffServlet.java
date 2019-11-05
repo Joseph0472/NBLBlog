@@ -12,21 +12,12 @@ import java.util.Enumeration;
  * @author Zorro
  */
 public class LogOffServlet extends HttpServlet {
-
-//    public String tologoff(HttpServletRequest request){
-//        Enumeration em = request.getSession().getAttributeNames();
-//        while(em.hasMoreElements()){
-//            request.getSession().removeAttribute(em.nextElement().toString());
-//        }
-//        return "login";
-//    }
-
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if(session != null){
-            session.invalidate();}
+            session.invalidate();
+        }
         request.getRequestDispatcher("WEB-INF/view/start-page.jsp").forward(request,response);
     }
 }

@@ -67,7 +67,7 @@ public class UpdateAccountInfoServlet extends HttpServlet{
         factory.setRepository(tempFolder);
         ServletFileUpload upload = new ServletFileUpload(factory);
 
-        //No record: simply add.
+        //No record: simply add a record.
         if (useridInSql == -1) {
 
             String avatarByChoosing = request.getParameter("featuredImageName");
