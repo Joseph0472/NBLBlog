@@ -211,7 +211,7 @@ public class ArticleDAO {
         Comparator<Article> articleComparator = new Comparator<Article>() {
             @Override
             public int compare(Article o1, Article o2) {
-                System.out.println("have we got to compare by username : " + o1.getTitle() + o2.getUsername());
+                System.out.println("have we got to compare by username : " + o1.getUsername() + o2.getUsername());
 
                 return o1.getUsername().toLowerCase().compareTo(o2.getUsername().toLowerCase());
             }

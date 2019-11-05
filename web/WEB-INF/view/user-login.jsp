@@ -123,7 +123,7 @@
 
 		<ul class="header__nav">
 			<li class="current"><a href="/articles" title="">Home</a></li>
-			<li><a href="/newArticle" title="">Compose</a></li>
+			<li><a href="/newArticle" title="">New</a></li>
 			<li class="has-children">
 				<a href="/articles" title="">Articles</a>
 				<ul class="sub-menu">
@@ -131,7 +131,13 @@
 					<li><a href="/articlesByUsers">Your articles</a></li>
 				</ul>
 			</li>
-			<li><a href="/updateInfo" title="">Profile</a></li>
+			<li class="has-children">
+				<a href="/updateInfo" title="">Profile</a>
+				<ul class="sub-menu">
+					<li><a href="/showInfo?id=${UserIdBySession}">Your Profile</a></li>
+					<li><a href="/updateInfo">Update Profile</a></li>
+				</ul>
+			</li>
 			<li class="has-children">
 				<a href="#0" title="">Gallery</a>
 				<ul class="sub-menu">
@@ -143,7 +149,7 @@
 				<a href="/user-login" title="">account</a>
 				<ul class="sub-menu">
 					<li><a href="/user-login">Log in</a></li>
-					<li><a href="#0">Log out</a></li>
+					<li><a onclick="logoff()">Log out</a></li>
 					<li><a href="/user-signup">Sign up</a></li>
 				</ul>
 			</li>

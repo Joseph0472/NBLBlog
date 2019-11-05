@@ -102,6 +102,16 @@
         <url-pattern>/changeiconlib</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ShowUserInfo</servlet-name>
+        <servlet-class>ictgradschool.web.controller.ShowAccountInfoServlet</servlet-class>
+        <!--        <jsp-file>/WEB-INF/view/user-interface.jsp</jsp-file>-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShowUserInfo</servlet-name>
+        <url-pattern>/showInfo</url-pattern>
+    </servlet-mapping>
 
     <!--=============================== Joseph part end ===============================-->
     <!--=============================== Lucas part start ===============================-->

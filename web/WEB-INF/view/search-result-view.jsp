@@ -102,31 +102,30 @@
 
 </header> <!-- s-header -->
 
-<!-- styles
-    ================================================== -->
 <section class="s-content s-content--top-padding s-content--narrow">
 
     <div class="row narrow">
-        <div class="col-full s-content__header" id="name-and-title">
+        <div class="col-full s-content__header">
             <h1 class="display-1 display-1--with-line-sep">Search Results</h1>
         </div>
     </div>
 
-    <div class="row">
-
-        <div class="col-full tab-full">
+    <div class="row narrow">
+        <div class="col-full s-content__header">
             <form action="/search-article" method="get">
-                <input type="search" name="search" class="full-width" value="${input}" placeholder="${input}">
+                <input id="name-and-title" type="search" name="search" class="full-width" value="${input}">
                 <input type="radio" name="keyword" value="title">Title
                 <input type="radio" name="keyword" value="username">Author
                 <button type="submit">Search</button>
             </form>
         </div>
+    </div>
 
-        <div class="col-full tab-full">
+    <div  class="row narrow">
+        <div class="col-full s-content__header">
             <form action="/search-article" method="get">
-                <div class="col-six tab-full">
-                    <label for="time">By: Publish time</label>
+                <div class="col-six tab-full" style="left: 235px;position: relative;top: -36px;">
+                    <label for="time"></label>
                     <input type="date" id="date" name="time" value="">
                     <button type="submit">Search</button>
                     <script>
@@ -139,6 +138,26 @@
         </div>
     </div>
 
+    <div class="row narrow">
+        <div class="col-full s-content__header">
+            <div class="sort">
+                <form action="/sort-article" method="get">
+                    <div id="option"> Sort By:
+                        <input type="radio" name="keyword-sort" value="username">Author
+                        <input type="radio" name="keyword-sort" value="title">Article Title
+                        <input type="radio" name="keyword-sort" value="time">Publish time
+                        <button type="submit">Sort</button>
+                    </div>
+                    <script>
+                        defaultDate = document.querySelector('#date-sort');
+                        console.log(new Date())
+                        defaultDate.valueAsDate = new Date();
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div id="display-article" class="row">
         <div class="col-full s-content__main">
             <c:if test="${empty articlesBySearch}">
@@ -146,25 +165,23 @@
             </c:if>
 
             <c:forEach var="articles" items="${articlesBySearch}">
-
-                <%--<p>
-                    <strong>articles.id: ${articles.id}</strong>
-                </p>--%>
                 <a href="./ArticleContent?id=${articles.id}">
-                    <p class="card-title">${articles.title}</p></a>
-                ${articles.username}
-                ${articles.date}
+                    <p class="card-title">Title: ${articles.title}</p></a>
+                <p>Created by: ${articles.username}</p>
+                <p>Date created: ${articles.date}</p>
                 <hr>
             </c:forEach>
         </div>
     </div>
+
 </section>
 
 <!-- s-footer
     ================================================== -->
 <footer class="s-footer">
     <div class="s-footer__main">
-        <p style="text-align: center"> This website is made with <i class="fa fa-heart" aria-hidden="true"></i> by NeverBeLate* team </p>
+        <p style="text-align: center"> This website is made with <i class="fa fa-heart" aria-hidden="true"></i> by
+            NeverBeLate* team </p>
     </div>
     <div class="go-top">
         <a class="smoothscroll" title="Back to Top" href="#top"></a>
@@ -173,27 +190,6 @@
 
 <!-- Java Script
     ================================================== -->
-<script type="text/javascript">
-    function logoff(){
-        var result = confirm("Are you sure to log off？");
-
-        if(result){
-            location.href="/tologoff";
-        }
-        setCookie("username", ' ', -1);
-    }
-
-    var setCookie = function (name, value, day) {
-        if(day !== 0){     //当设置的时间等于0时，不设置expires属性，cookie在浏览器关闭后删除
-            var expires = day * 24 * 60 * 60 * 1000;
-            var date = new Date(+new Date()+expires);
-            document.cookie = name + "=" + escape(value) + ";expires=" + date.toUTCString();
-        }else{
-            document.cookie = name + "=" + escape(value);
-        }
-    };
-</script>
-
 <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="js/plugins.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>

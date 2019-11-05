@@ -19,6 +19,17 @@
     var doc = document.documentElement;
     doc.setAttribute('data-useragent', navigator.userAgent);
 
+    function logoff() {
+        var result = confirm("Are you sure to log off？");
+
+        if (result) {
+            location.href = "/tologoff";
+        }
+        setCookie("username", ' ', -1);
+    }
+
+
+
 
     /* Preloader
      * -------------------------------------------------- */
@@ -284,6 +295,26 @@
         clAlertBoxes();
         clAOS();
         clBackToTop();
+
     })();
 
 })(jQuery);
+
+function logoff() {
+    var result = confirm("Are you sure to log off？");
+
+    if (result) {
+        location.href = "/tologoff";
+    }
+    setCookie("username", ' ', -1);
+};
+
+var setCookie = function (name, value, day) {
+    if (day !== 0) {
+        var expires = day * 24 * 60 * 60 * 1000;
+        var date = new Date(+new Date() + expires);
+        document.cookie = name + "=" + escape(value) + ";expires=" + date.toUTCString();
+    } else {
+        document.cookie = name + "=" + escape(value);
+    }
+};

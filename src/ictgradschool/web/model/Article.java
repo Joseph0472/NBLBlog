@@ -11,7 +11,6 @@ public class Article {
     private String imageFilename;
     private Integer userId;
     private Date date;
-    private String userFullName;
     private String username;
 
 
@@ -31,15 +30,6 @@ public class Article {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-
-    public String getUserFullName() {
-        return userFullName;
-    }
-
-    public void setUserFullName(String userFullName) {
-        this.userFullName = userFullName;
     }
 
 
@@ -139,6 +129,8 @@ public class Article {
                 ", content='" + content + '\'' +
                 ", imageFilename='" + imageFilename + '\'' +
                 ", userId=" + userId +
+                ", date=" + date +
+                ", username='" + username + '\'' +
                 '}';
     }
 }
