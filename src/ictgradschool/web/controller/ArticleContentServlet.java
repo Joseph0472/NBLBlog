@@ -69,9 +69,14 @@ public class ArticleContentServlet extends HttpServlet {
         */
             String content = req.getParameter("content");
 
+                  /*
+            get avatar by SHI 1104
+             */
+            String avatarFileName = UserDAO.getUserAvatarById(userId, conn);
+
             //add username bySHI
             String username = UserDAO.getUsernameById(userId, conn);
-            ParentComment newComment = new ParentComment(content, articleId, userId, current_date, username);
+            ParentComment newComment = new ParentComment(content, articleId, userId, current_date, username, avatarFileName);
             CommentDAO.insertParentComment(newComment, conn);
 
         /*

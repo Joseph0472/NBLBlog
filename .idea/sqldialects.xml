@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/scripts/article_Lucas.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/scripts/comment-Shi.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/scripts/login_Joseph.sql" dialect="MariaDB" />
   </component>
 </project>
