@@ -116,7 +116,7 @@
 
         <div class="col-full tab-full">
             <form action="/search-article" method="get">
-                <input type="search" name="search" class="full-width" value="${input}">
+                <input type="search" name="search" class="full-width" value="${input}" placeholder="${input}">
                 <input type="radio" name="keyword" value="title">Title
                 <input type="radio" name="keyword" value="username">Author
                 <button type="submit">Search</button>
@@ -152,8 +152,8 @@
                 </p>--%>
                 <a href="./ArticleContent?id=${articles.id}">
                     <p class="card-title">${articles.title}</p></a>
-                <p>${articles.username}</p>
-                <p>${articles.date}</p>
+                ${articles.username}
+                ${articles.date}
                 <hr>
             </c:forEach>
         </div>

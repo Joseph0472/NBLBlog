@@ -21,6 +21,42 @@ public class ParentComment {
         this.username = username;
     }
 
+      /*
+add avatarFileName to comment by SHI 1104
+ */
+
+    private String avatarFilename;
+
+    public String getAvatarFilename() {
+        return avatarFilename;
+    }
+
+    public void setAvatarFilename(String avatarFilename) {
+        this.avatarFilename = avatarFilename;
+    }
+
+    public ParentComment(String content, int articleId, int userId, Date date, String username, String avatarFilename) {
+
+        this.content = content;
+        this.articleId = articleId;
+        this.userId = userId;
+        this.date = date;
+        this.username = username;
+        this.avatarFilename = avatarFilename;
+    }
+
+    public ParentComment(int id, String content, int articleId, int userId, Date date, String username, String avatarFilename) {
+        this.id = id;
+        this.content = content;
+        this.articleId = articleId;
+        this.userId = userId;
+        this.date = date;
+        this.username = username;
+        this.avatarFilename = avatarFilename;
+    }
+
+
+
     public ParentComment(String content, int articleId, int userId, Date date, String username) {
         this.content = content;
         this.articleId = articleId;

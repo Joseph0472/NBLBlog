@@ -206,4 +206,26 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+    /*
+  add on NOV 04 for user avatar by SHI
+   */
+    public static String getUserAvatarById(Integer id, Connection conn) throws SQLException {
+        try (PreparedStatement stmt = conn.prepareStatement("select * from fp_userInfo where userid = ?")){
+            stmt.setInt(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()){
+                if (rs.next()) {
+                    System.out.println("have we got rs? "+ rs);
+                    return getUserAvatarFromResultSet(rs);
+                }else {
+                    return null;
+                }
+            }
+        }
+    }
+
+    private static String getUserAvatarFromResultSet(ResultSet rs) throws SQLException {
+        return rs.getString("avatarFilename");
+    }
 }
