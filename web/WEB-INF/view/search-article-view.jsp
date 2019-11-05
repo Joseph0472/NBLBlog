@@ -19,7 +19,6 @@
         By:
         <input type="radio" name="keyword" value="username">Author
         <input type="radio" name="keyword" value="title">Article Title
-
             <button type="submit">Search</button>
         </div>
     </form>
@@ -35,7 +34,6 @@
         </script>
     </form>
 </div>
-
 
 </body>
 </html>

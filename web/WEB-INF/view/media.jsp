@@ -73,7 +73,7 @@
 
         <ul class="header__nav">
             <li class="current"><a href="/articles" title="">Home</a></li>
-            <li><a href="/newArticle" title="">Compose</a></li>
+            <li><a href="/newArticle" title="">New</a></li>
             <li class="has-children">
                 <a href="/articles" title="">Articles</a>
                 <ul class="sub-menu">
@@ -81,7 +81,13 @@
                     <li><a href="/articlesByUsers">Your articles</a></li>
                 </ul>
             </li>
-            <li><a href="/updateInfo" title="">Profile</a></li>
+            <li class="has-children">
+                <a href="/updateInfo" title="">Profile</a>
+                <ul class="sub-menu">
+                    <li><a href="/showInfo?id=${UserIdBySession}">Your Profile</a></li>
+                    <li><a href="/updateInfo">Update Profile</a></li>
+                </ul>
+            </li>
             <li class="has-children">
                 <a href="#0" title="">Gallery</a>
                 <ul class="sub-menu">
@@ -108,24 +114,22 @@
     <div class="row narrow">
         <div class="col-full s-content__header">
             <h1 class="display-1 display-1--with-line-sep">User's images and video</h1>
+            <p>Scroll to view gallery</p>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-full s-content__main">
+    <div class="row entries-wrap wide">
+        <div class="entries">
 
             <c:forEach items="${fileNameList}" var="fileNameList" varStatus="vs">
-                <div class="part">
-                    <%--<p>userId:${userId}</p>
-                    <p>fileName:${fileNameList}</p>--%>
-                    <img src="./assets/images/${userId}/${fileNameList}">
 
+                <div class="item-entry" data-aos="zoom-in">
+                    <img src="./assets/images/${userId}/${fileNameList}">
                 </div>
             </c:forEach>
             <c:forEach items="${videoNameList}" var="videoNameList" varStatus="vs">
-                <div class="part">
-                    <%--<p>userId:${userId}</p>
-                    <p>videoName:${videoNameList}</p>--%>
+
+                <div class="item-entry" data-aos="zoom-in">
                     <video width="320" height="240" controls="controls">
                         <source src="./assets/video/${userId}/${videoNameList}" type="video/mp4"/>
                         <source src="./assets/video/${userId}/${videoNameList}" type="video/ogg"/>

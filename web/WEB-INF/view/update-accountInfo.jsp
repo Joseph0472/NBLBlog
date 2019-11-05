@@ -14,16 +14,39 @@
     <!-- CSS
     ================================================== -->
     <link href="./froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/avatar.css">
-
     <link rel="stylesheet" href="css/base.css" type="text/css">
     <link rel="stylesheet" href="css/vendor.css" type="text/css">
     <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <style>
+        .btn {
+            transition-duration: 0.4s;
+            cursor: pointer;
+            padding: 8px 15px;
+        }
+
+        .btn:hover {
+            background-color: #eff5f5;
+            color: #024a26;
+        }
+
+        #iconModal img {
+            height: 150px;
+            width: 150px;
+        }
+    </style>
 
     <!-- script
     ================================================== -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="js/modernizr.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="jquery-3.4.1.min.js"></script>
 
 </head>
 
@@ -72,7 +95,7 @@
 
         <ul class="header__nav">
             <li class="current"><a href="/articles" title="">Home</a></li>
-            <li><a href="/newArticle" title="">Compose</a></li>
+            <li><a href="/newArticle" title="">New</a></li>
             <li class="has-children">
                 <a href="/articles" title="">Articles</a>
                 <ul class="sub-menu">
@@ -80,7 +103,13 @@
                     <li><a href="/articlesByUsers">Your articles</a></li>
                 </ul>
             </li>
-            <li><a href="/updateInfo" title="">Profile</a></li>
+            <li class="has-children">
+                <a href="/updateInfo" title="">Profile</a>
+                <ul class="sub-menu">
+                    <li><a href="/showInfo?id=${UserIdBySession}">Your Profile</a></li>
+                    <li><a href="/updateInfo">Update Profile</a></li>
+                </ul>
+            </li>
             <li class="has-children">
                 <a href="#0" title="">Gallery</a>
                 <ul class="sub-menu">
@@ -109,29 +138,8 @@
     <div class="row narrow">
         <div class="col-full s-content__header">
             <h1 class="display-1 display-1--with-line-sep">Account Info Update</h1>
-            <%--<p>(get username from session. If the user has no account info, it should say/display: you need to create
-                your
-                account info at very first time. If the user has account info, just update it.)</p>--%>
         </div>
     </div>
-
-    <%--TODO: check this out and debug code above : https://codepen.io/siremilomir/pen/jBbQGo--%>
-    <%--<form id="form" method="post" action="/userInterface">--%>
-    <%--    <p>First Name<input type="text" id="fname" name="fname"></p>--%>
-    <%--    <p>Last Name<input type="text" id="lname" name="lname"></p>--%>
-    <%--    <p>Email Address<input type="text" id="email"></p>--%>
-    <%--    <p>Phone<input type="text" id="phonenum"></p>--%>
-    <%--    <p>Date of Birth<input type="date" id="date" max= 2029-10-10></p> &lt;%&ndash;date here should be handled as String&ndash;%&gt;--%>
-    <%--&lt;%&ndash;TODO: copy the dropdown list from the former project, and make the desc done, and avatar&ndash;%&gt;--%>
-    <%--    <p>Country<input id="country"><p>--%>
-    <%--    <p>Description<input id="description"><p>--%>
-
-    <%--    <p>Choose a avatar or update your own one<input id="avatar"></p>--%>
-
-    <%--    <p><time hidden name="timestamp" value="gettimestamp()">time</time></p>--%>
-    <%--    <button type="submit" >submit</button>--%>
-    <%--    <button type="reset" value="reset">clear</button>--%>
-    <%--</form>--%>
 
     <div class="row">
         <div class="col-full s-content__main">
@@ -437,23 +445,29 @@
                     <%--        <p>Choose a avatar or update your own one</p><input type="file" name="avatar" accept="image/png, image/jpeg" />--%>
                     <%--<p><time hidden name="timestamp" value="gettimestamp()">time</time></p>--%>
                     <div class="container">
-                        <h1>jQuery Image Upload
-                            <small>with preview</small>
-                        </h1>
                         <div class="avatar-upload">
-                            <div class="avatar-edit">
-                                <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg"/>
-                                <label for="imageUpload"></label>
-                            </div>
-                            <div class="avatar-preview">
-                                <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                            <div class="grid-container col-lg-5 col-md-4 col-sm-4">
+                                <div class="grid-item">
+                                    <img class="img-circle mx-5" style="width:100px; height:100px" id="featuredImage" name="featuredImage"
+                                         src='http://i.pravatar.cc/500?img=7' alt="profile icon"/>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
+                                <div class="grid-item" style="margin-left: 20px">
+                                    <button id="fromLibrary" type="button" class="btn btn-warning btn-lg" data-toggle="modal"
+                                            data-target="#iconModal">Choose your icon
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <input type='file' id="imageUpload" name="imageUpload" accept=".png, .jpg, .jpeg" />
+                            <label for="imageUpload"></label>
+                        </div>
+
+                    </div>
+                    <input type="hidden" id="imgSrc" name="imgSrc">
                     <div>
-                        <button type="submit" value="submit" class="submit btn btn--primary btn--large full-width">
+                        <button type="submit" value="submit" onclick="submitClicked()" class="submit btn btn--primary btn--large full-width">
                             Submit
                         </button>
                     </div>
@@ -465,133 +479,40 @@
         </div> <!-- s-content__main -->
     </div> <!-- end row -->
 
+    <input type="hidden" id="userid" value="${UserIdBySession}">
+
+    <div class="modal m-auto modal-sm " id="iconModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog-centered">
+            <div class="modal-content m-auto">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">Scroll and pick your icon!!</h5>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div onclick="changeImage(0)" id="0" class="thumb-holder m-5 padding-auto"
+                    ><img src="assets/avatars/batman.png" alt="thumb" height="100px" width="100px"></div>
+
+                    <div onclick="changeImage(1)" id="1" class="thumb-holder m-5 padding-auto"
+                    ><img src="assets/avatars/einstein.png" alt="thumb" height="100px" width="100px"></div>
+
+                    <div onclick="changeImage(2)" id="2" class="thumb-holder m-5 padding-auto"
+                    ><img src="assets/avatars/monroe.png" alt="thumb" height="100px" width="100px"></div>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section> <!-- end s-content -->
-
-<%--<script type="text/javascript">--%>
-<%--    function check() {--%>
-
-<%--        let name = document.querySelector("#name").value;--%>
-<%--        let result = nameOK(name);--%>
-<%--        console.log(result);--%>
-
-<%--        let email = document.querySelector("#email").value;--%>
-<%--        let result1= emailOK(email);--%>
-<%--        console.log(result1);--%>
-
-<%--        // let zip = document.querySelector("#zip").value;--%>
-<%--        // let result2 =  zipOK(zip);--%>
-<%--        // console.log(result2);--%>
-
-<%--        let psw = document.querySelector("#psw").value;--%>
-<%--        let psw_confirmation=document.querySelector("#psw_confirmation").value;--%>
-<%--        let result3 = pswOK(psw, psw_confirmation);--%>
-<%--        console.log(result3);--%>
-
-<%--        let startdate = document.querySelector("#date").value;--%>
-<%--        let result4 =  ageOK(startdate);--%>
-<%--        console.log(result4);--%>
-
-<%--        return result&&result1&&result3&&result4;--%>
-<%--        // gettimestamp();--%>
-<%--    }--%>
-<%--    // function gettimestamp() {--%>
-<%--    //     var d=Date.now();--%>
-<%--    //     return d;//我不知道你这里为啥return--%>
-<%--    // }--%>
-
-<%--    function nameOK(name) {--%>
-<%--        let namepattern=new RegExp("^[A-Za-z][A-Za-z0-9]{0,}$");--%>
-<%--        if (!name.match(namepattern)){--%>
-<%--            window.alert("The account name can only be upper or lower case letters and numbers, but may not start with a number");--%>
-<%--            return false;}--%>
-<%--        else return true;--%>
-
-<%--    }--%>
-<%--    function emailOK(email) {--%>
-<%--        if (email.length ===0){--%>
-<%--            alert("email is empty");--%>
-<%--            return false;--%>
-<%--        }--%>
-<%--        else return true;--%>
-<%--    }--%>
-
-<%--    function pswOK(psw, psw_confirmation) {--%>
-<%--        if (psw !== psw_confirmation){--%>
-<%--            window.alert("The passwords are not matched");--%>
-<%--            return false;--%>
-<%--        }--%>
-<%--        else if (psw.replace(/(^s*)|(s*$)/g, "").length ===0){--%>
-<%--            alert("password is empty");--%>
-<%--            return false;--%>
-<%--        }--%>
-<%--        else return true;--%>
-
-<%--    }--%>
-
-<%--    function zipOK(zip) {--%>
-<%--        let zippattern=new RegExp("(\\d{5}([\\-]\\d{4})?)");--%>
-<%--        if (!zip.match(zippattern)){--%>
-<%--            window.alert("The zip is not matched to the zip pattern");--%>
-<%--            return false;}--%>
-<%--        else return true;--%>
-
-<%--    }--%>
-
-<%--    function ageOK(startdate){--%>
-<%--        if (startdate.toString().length<10){--%>
-<%--            alert("日期不完整")--%>
-<%--            return false;--%>
-<%--        }--%>
-<%--        let nowDate = new Date(); // 当前时间--%>
-<%--        console.log(nowDate);--%>
-<%--        let nowdate = nowDate.getDate().toString();--%>
-<%--        console.log(nowdate);--%>
-<%--        let nowmonth = parseInt(nowDate.getMonth().toString())+1;--%>
-<%--        console.log(nowmonth);--%>
-<%--        let nowyear = nowDate.getFullYear().toString();--%>
-<%--        console.log(nowyear);--%>
-<%--        console.log(startdate);--%>
-<%--        let start = startdate.toString().split( "-" )--%>
-<%--        console.log(start[0].toString());--%>
-<%--        console.log(start[1].toString());--%>
-<%--        console.log(start[2].toString());--%>
-<%--        // window.alert("you are a child!");--%>
-<%--        let gapyear = parseInt(nowyear)-parseInt(start[0]);--%>
-<%--        let gapmonth = parseInt(nowmonth)-parseInt(start[1]);--%>
-<%--        let gapday = parseInt(nowdate)-parseInt(start[2]);--%>
-
-<%--        console.log(gapyear);--%>
-<%--        console.log(gapmonth);--%>
-<%--        console.log(gapday);--%>
-
-<%--        if (parseInt(gapyear)<18){--%>
-<%--            window.alert("you are a child!");--%>
-<%--            return false;--%>
-<%--        }--%>
-<%--        else if (parseInt(gapyear)===18){--%>
-
-
-<%--            if (gapmonth<0){--%>
-<%--                window.alert("you are a child!");--%>
-<%--                return false;}--%>
-
-<%--            else if (gapmonth===0){--%>
-<%--                if (gapday<0){--%>
-<%--                    window.alert("you are a child!");--%>
-<%--                    console.log(start[2]);--%>
-<%--                    console.log("test");--%>
-<%--                    return false;--%>
-<%--                }--%>
-<%--                else return true;--%>
-<%--            }--%>
-<%--            else return true;--%>
-<%--        }--%>
-<%--        else {--%>
-<%--            console.log("test");--%>
-<%--            return true;--%>
-<%--        }--%>
-<%--    }--%>
-<%--</script>--%>
 
 <!-- s-footer
 ================================================== -->
@@ -612,39 +533,62 @@
 <script src="js/main.js" type="text/javascript"></script>
 
 <script>
+
+    var userid = document.querySelector('#userid').value;
+    var iconName;
+
+    function changeImage(numImage) {
+        var formData = new FormData();
+
+        const imageCollection = [
+            {name: "batman", description: "This is Batman", value:"batman.png"},
+            {name: "einstein", description: "This is Einstein", value:"einstein.png"},
+            {name: "monroe", description: "This is Monroe", value:"monroe.png"},
+            {name: "muslim", description: "This is Mus"},
+            {name: "noface", description: "This is Noface"},
+            {name: "nun", description: "This is Nun"},
+            {name: "Santa", description: "This is Santa"},
+            {name: "sloth", description: "This is Sloth"},
+            {name: "trump", description: "This is Trump"},
+            {name: "zombie", description: "This is Zombie"}
+        ];
+
+        var image = document.getElementById('featuredImage');
+        var imgsrc = document.getElementById('imgSrc');
+        image.src = "/assets/avatars/" + imageCollection[numImage].name + ".png";
+        imgsrc.value =imageCollection[numImage].value;
+        iconName = imageCollection[numImage].name + ".png";
+    }
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
+
             reader.onload = function (e) {
-                $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
+                $('#featuredImage').attr('src', e.target.result);
             }
+
             reader.readAsDataURL(input.files[0]);
         }
     }
 
-    $("#imageUpload").change(function () {
+    $("#imageUpload").change(function(){
         readURL(this);
     });
-</script>
 
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
+    function saveIconLib(iconName) {
+        $.ajax({
+            type: 'POST',
+            url: 'changeiconlib',
+            data: {"iconName": iconName , "userid": userid},
+            async: true,
+            dataType: 'json'
+        });
     }
 
-    $("#imageUpload").change(function () {
-        readURL(this);
-    });
+    function submitClicked() {
+        saveIconLib(iconName);
+    }
 </script>
 
 </body>

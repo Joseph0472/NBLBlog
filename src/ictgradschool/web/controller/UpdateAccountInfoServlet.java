@@ -216,45 +216,6 @@ public class UpdateAccountInfoServlet extends HttpServlet{
             dispatcher.forward(request, response);
         }
 
-//      response.sendRedirect("./user");
-//        request.setAttribute("newAccountInfo", newAccountInfo);
-//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("WEB-INF/view/user-interface.jsp");
-
-//       dispatcher.forward(request, response);
-//        request.getRequestDispatcher("WEB-INF/view/user-interface.jsp").forward(request, response);
-
-//        newAccountInfo.setFname(request.getParameter("fname"));
-//        newAccountInfo.setLname(request.getParameter("lname"));
-//        newAccountInfo.setEmailAddress(request.getParameter("email"));
-//        newAccountInfo.setPhoneNum(request.getParameter("phonenum"));
-//        newAccountInfo.setDob(request.getParameter("date"));
-//        newAccountInfo.setCountry(request.getParameter("country"));
-//        newAccountInfo.setDescription(request.getParameter("description"));
-//        newAccountInfo.setAvatarFileName(request.getParameter("avatar"));
-
-//        HttpSession session = request.getSession(false);
-//        Userid = (String)session.getAttribute("UserIdBySession");
-
-//        try (Connection conn = DBConnectionUtils.getConnectionFromSrcFolder("connection.properties")) {
-//            if (request.getSession().getAttribute("UserIdBySession") != null) {
-//                System.out.println(userid);
-//                newAccountInfo.setUserid(userid);
-//                System.out.println(newAccountInfo.getFname());
-//                System.out.println(request.getParameter("fname"));
-////                UserDAO.addUserInfo(newAccountInfo,conn);
-//
-//                UserDAO.addUserInfo(newAccountInfo,conn);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        /**
-//         * In this case, I have no need to show the result of sign-in, maybe it is not necessary to 'dispatch'... jump!
-//         * **/
-//        request.setAttribute("newAccountInfo", newAccountInfo);
-//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/user-interface.jsp");
-//        dispatcher.forward(request, response);
     }
 
     @Override
