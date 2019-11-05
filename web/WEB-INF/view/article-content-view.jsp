@@ -159,7 +159,7 @@
                     <li class="thread-alt depth-1 comment">
 
                         <div class="comment__avatar">
-                            <img class="avatar" src="./assets/avatars/images/${p_comments.avatarFilename}" alt="" width="50" height="50">
+                            <img class="avatar" src="./assets/avatars/${p_comments.avatarFilename}" alt="" width="50" height="50">
                         </div>
 
                         <div class="comment__content">
@@ -170,16 +170,17 @@
                                 <div class="comment__meta">
                                     <div class="comment__time">Date:${p_comments.date}</div>
                                     <div class="comment__reply">
-                                        <form action="./replyServlet" method="post" class="reply_form">
-                                            <button type="submit" name="p_comments_id" value="${p_comments.id}" >reply</button>
-                                        </form>
-                                        <c:if test="${p_comments.userId == UserIdBySession || article.userId ==
+                                        <div style="display: inline-block">
+                                            <a href="./replyServlet?p_comments_id=${p_comments.id}"
+                                               class="item-entry__thumb-link">Reply</a>
+                                        </div>
+                                        <div style="display: inline-block">
+                                            <c:if test="${p_comments.userId == UserIdBySession || article.userId ==
                                         UserIdBySession}">
-                                            <form action="./deleteCommentServlet" method="post" class="reply_form">
-                                                <button type="submit" name="p_comments_id" value="${p_comments.id}" >
-                                                    Delete</button>
-                                            </form>
-                                        </c:if>
+                                                <a href="./deleteCommentServlet?p_comments_id=${p_comments.id}"
+                                                   class="item-entry__thumb-link">Delete</a>
+                                            </c:if>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +197,7 @@
                             <li class="depth-2 comment">
 
                                 <div class="comment__avatar" style=" left: 50px">
-                                    <img class="avatar" src="./assets/images/avatars/${c_comments.avatarFilename}" alt="" width="50" height="50">
+                                    <img class="avatar" src="./assets/avatars/${c_comments.avatarFilename}" alt="" width="50" height="50">
                                 </div>
 
                                 <div class="comment__content">
@@ -207,11 +208,8 @@
                                         <div class="comment__meta">
                                             <div class="comment__time">Date:${c_comments.date}</div>
                                             <c:if test="${c_comments.userId == UserIdBySession || article.userId == UserIdBySession}">
-                                                <form action="./deleteCommentServlet" method="post" class="reply_form">
-                                                    <button type="submit" name="c_comments_id"
-                                                            value="${c_comments.id}" >
-                                                        Delete</button>
-                                                </form>
+                                                <a href="./deleteCommentServlet?c_comments_id=${c_comments.id}"
+                                                   class="item-entry__thumb-link">Delete</a>
                                             </c:if>
                                         </div>
                                     </div>
