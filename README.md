@@ -1,7 +1,9 @@
-Our Project is on Live:
+NBL blog, a blog java web application.
 
-[Go NBL!!!](https://trello.com/b/2o8AzJJK/%E6%AC%A2%E8%BF%8E%E4%BD%BF%E7%94%A8trello%EF%BC%81)
+~~Our Project is on Live:~~
 
-We moved a little bit. A little bit more
+[Go NBL!!! Trello page](https://trello.com/b/2o8AzJJK/%E6%AC%A2%E8%BF%8E%E4%BD%BF%E7%94%A8trello%EF%BC%81)
 
-sometimes something doesn't shown
+###
+Product Requirements Document
+###
