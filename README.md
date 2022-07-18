@@ -1,4 +1,4 @@
-NBL blog, a blog java web application.
+NBL blog, a blog java web application (The project is no longer updated).
 
 ~~Our Project is on Live:~~
 
